@@ -1,0 +1,12 @@
+---
+stylesheets:
+  - ../scss/style.scss
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main>
+      {{> error-layout pageData=data.500-error }}
+    </main>
+  {{/content}}
+{{/extend}}

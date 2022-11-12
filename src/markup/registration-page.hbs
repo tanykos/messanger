@@ -1,0 +1,13 @@
+---
+stylesheets:
+  - ../scss/style.scss
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main class="items-center">
+    {{> form formData=formsData.registration-form 
+            formInputs=fieldsData.registration-form}}
+    </main>
+  {{/content}}
+{{/extend}}

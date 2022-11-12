@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  {{#block "head"}}
+    <head>
+      <meta charset="UTF-8">
+      <title>Messenger</title>
+      <link rel="icon" type="image/x-icon" href="../../static/image/favicon.ico">
+      <script src="https://kit.fontawesome.com/96730757fb.js" crossorigin="anonymous"></script>
+
+      {{#block "styles"}}
+        {{#each stylesheets}}
+          <link href="{{this}}" rel="stylesheet" />
+        {{/each}}
+      {{/block}}
+    </head>
+  {{/block}}
+
+{{#block "body"}}
+  <body>
+    <main class="layout-col-2">
+        {{#block "side-content"}}
+        {{/block}}
+
+        {{#block "main-content"}}
+        {{/block}}
+      </div>
+    </main>
+  </body>
+{{/block}}
+</html> 

@@ -1,0 +1,16 @@
+---
+stylesheets:
+  - ../scss/style.scss
+scripts:
+  - ../index.js
+---
+
+{{#extend "base-profile"}}
+  {{#content "main-content"}}
+    <div class="main-content">
+      {{> profile-content pageData=profileData.profile-edit
+                          inputsData=profileData.profile-edit-inputs
+                          actionsData=profileData.profile-edit-actions }}
+    </div>
+  {{/content}}
+{{/extend}}

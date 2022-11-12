@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  {{#block "head"}}
+    <head>
+      <meta charset="UTF-8">
+      <title>Messenger</title>
+      <link rel="icon" type="image/x-icon" href="../../static/image/favicon.ico">
+      
+      <script src="https://kit.fontawesome.com/96730757fb.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      
+      {{#block "styles"}}
+        {{#each stylesheets}}
+          <link href="{{this}}" rel="stylesheet" />
+        {{/each}}
+      {{/block}}
+    </head>
+  {{/block}}
+
+{{#block "body"}}
+  <body>
+    <main class="layout-col-2">
+        {{#block "side-content"}}
+          <div class="side-content">
+            <a href="listChats-page.hbs" class="icon-link">
+              <i class="fa-solid fa-circle-arrow-left icon-primary"></i>
+            </a>
+          </div>
+        {{/block}}
+
+        {{#block "main-content"}}
+        {{/block}}
+      </div>
+    </main>
+
+    {{#block "scripts"}}
+      {{#each scripts}}
+        <script defer src="{{this}}"></script>
+      {{/each}}
+    {{/block}}
+  </body>
+{{/block}}
+</html> 

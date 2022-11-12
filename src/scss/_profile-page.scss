@@ -1,0 +1,99 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .profile-wrap {
+    width: 50%;
+
+    .profile-content {
+      margin: 50px 0;
+
+      input {
+        color: $gray;
+      }
+    }
+    .profile-actions {
+      .actions-item {
+        @extend %border-bottom-gray;
+        display: flex;
+        .primary-btn {
+          width: 50%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  .avatar {
+    @extend %flex-centered;
+    margin: 18px auto;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: $bg-img;
+    color: $gray;
+  }
+}
+
+.avatar-wrapper{
+	position: relative;
+	height: 130px;
+	width: 130px;
+	margin: 24px auto;
+	border-radius: 50%;
+	overflow: hidden;
+	transition: all .3s ease;
+  background-color: rgba(0, 0, 0, 0.1);
+	&:hover{
+		transform: scale(1.05);
+    background-color: rgba(0, 0, 0, 0.6);
+		cursor: pointer;
+	}
+	&:hover .profile-pic{
+		opacity: .5;
+	}
+	.profile-pic {
+		transition: all .3s ease;
+
+    // fix for hide border of empty src of img
+    margin: -1px;    
+    height: 101%;
+		width: 101%;
+    // fix end
+
+		&:after{
+			font-family: 'Font Awesome 6 Free';
+			content: "\f03e";
+			position: absolute;
+			font-size: 40px;
+			color: $gray;
+			text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+		}
+	}
+	.upload-button {
+		position: absolute;
+		top: 0;
+    left: 0;
+		height: 100%;
+		width: 100%;
+		.inner-text{
+			position: absolute;
+			font-size: 14px;
+			top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+			text-align: center;
+			opacity: 0;
+			transition: all .3s ease;
+			color: $text-white;
+		}
+		&:hover .inner-text {
+      opacity: 0.9;
+    }
+    
+	}
+}
