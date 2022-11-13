@@ -1,0 +1,30 @@
+<div class="profile-wrap">
+  <div class="avatar-wrapper">
+    <img class="profile-pic" src="//:0" />
+    <div class="upload-button">
+      <span class="inner-text">
+        Поменять <br/> аватар
+      </span>
+    </div>
+    <input name="avatar" class="file-upload" type="file" accept="image/*"/>
+  </div>
+
+  <h1 class="title-center">{{pageData.user-name}}</h1>
+
+  <form>
+    <div class="profile-content">
+      {{#each inputsData}}
+        {{> input-inline inputsData=this isEdit=../pageData.isEdit }}
+      {{/each}}
+    </div>
+	
+    <div class="profile-actions">
+      {{#each actionsData}}
+        <div class="actions-item">
+          <a href="{{this.link-href}}" class="{{this.link-class}}">{{this.link-title}}</a>
+        </div>		  
+      {{/each}}
+    </div>	
+  </form>
+    
+</div>
