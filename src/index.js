@@ -1,22 +1,22 @@
 'use strict'
 
 document.addEventListener( 'DOMContentLoaded', () => {
-    let readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+  // Modal
+  let popup = document.getElementById("popup");
+  let span = document.getElementsByClassName("close")[0];
 
-            reader.onload = function (e) {
-              document.querySelector(".profile-pic").setAttribute('src', e.target.result);
-            }
-    
-            reader.readAsDataURL(input.files[0]);
-        }
+  document.querySelector(".modal-show").addEventListener('click', function() {
+    popup.style.display = "block";
+  });
+
+  // Close the modal
+  span.onclick = function() {
+    popup.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == popup) {
+        popup.style.display = "none";
     }
-    document.querySelector(".file-upload").addEventListener('change', function(){
-        readURL(this);
-    });
-    
-    document.querySelector(".upload-button").addEventListener('click', function() {
-      document.querySelector(".file-upload").click();
-    });
+  }
 });
