@@ -1,0 +1,37 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .profile-wrap {
+    width: 50%;
+
+    .profile-content {
+      margin: 50px 0;
+
+      input {
+        color: $gray;
+      }
+    }
+    .profile-actions {
+      .actions-item {
+        @extend %border-bottom-gray;
+        display: flex;
+        .primary-btn {
+          width: 50%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  .avatar {
+    @extend %flex-centered;
+    margin: 18px auto;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: $bg-img;
+    color: $gray;
+  }
+}

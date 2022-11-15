@@ -1,0 +1,18 @@
+{
+  "login-form": 
+    {
+      "title": "Вход",
+      "button-label": "Авторизоваться",
+      "button-href": "./pages/listChats-page.hbs",
+      "link-title": "Нет аккаунта?",
+      "link-href": "./pages/registration-page.hbs"
+    },
+  "registration-form":
+    {
+      "title": "Регистрация",
+      "button-label": "Зарегистрироваться",
+      "button-href": "./listChats-page.hbs",
+      "link-title": "Войти",
+      "link-href": "../index.hbs"
+    }
+}

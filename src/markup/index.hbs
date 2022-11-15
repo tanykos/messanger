@@ -1,0 +1,16 @@
+---
+favicon:
+  - ../../static/image/favicon.ico
+
+stylesheets:
+  - ../scss/style.scss
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main class="items-center">
+    {{> form formData=formsData.login-form 
+            formInputs=fieldsData.login-form}}
+    </main>
+  {{/content}}
+{{/extend}}

@@ -1,0 +1,14 @@
+---
+favicon:
+  - ../../../static/image/favicon.ico
+stylesheets:
+  - ../../scss/style.scss
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main>
+      {{> error-layout pageData=data.404-error }}
+    </main>
+  {{/content}}
+{{/extend}}

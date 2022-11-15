@@ -1,0 +1,14 @@
+button,
+.primary-btn {
+  height: 37px;
+  color: $text-white;
+  background: $primary;
+  border-radius: 8px;
+  border: none;
+}
+
+a.primary-btn {
+  width: 100%;
+  text-align: center;
+  line-height: 37px;
+}

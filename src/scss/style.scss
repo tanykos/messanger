@@ -1,0 +1,113 @@
+@import '../../static/normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+@import 'variables';
+
+@import 'input-floating';
+@import 'form-center';
+@import 'button';
+@import 'input-inline';
+@import 'profile-page';
+@import 'modal';
+@import 'avatar';
+
+
+// ====== general styles ======
+%flex-h100 {
+  min-height: 100vh;
+  display: flex;
+}
+
+%flex-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%border-bottom-gray {
+  padding-bottom: 6px;
+  margin-top: 6px;
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-gray;
+  }
+}
+
+h1 {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: $primary;
+  &:hover {
+    filter: brightness(85%);
+  }
+}
+
+a.red {
+  color: $red;
+}
+
+.title-center {
+  text-align: center;
+}
+
+.items-center {
+  justify-content: center;
+  align-items: center;
+}
+
+main{
+  @extend %flex-h100;
+  background-color: $bg-white;
+  color: $text-dark;
+  font-family: $font-main;
+  font-size: 13px;
+}
+
+// ====== icons styles ======
+.icon-primary {
+  color: $primary;
+}
+.icon-link {
+  margin: 18px;
+  .icon-primary {
+    width: 28px;
+    height: 28px;
+    &:hover {
+      color: darken($primary, 10%)
+    }
+  }
+}
+
+.icon-40 {
+  width: 40px;
+  height: 40px;
+}
+
+// ======layout styles ======
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 20px;
+    margin-bottom: 70px;
+  }
+}
+
+.layout-col-2 {
+  .main-content {
+    flex: 1 0 auto;
+  }
+
+  .side-content {
+    display: flex;
+    align-items: center;
+    background-color: $bg-gray;
+    border-right: 1px solid $border-gray;
+  }
+}
