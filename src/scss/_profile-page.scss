@@ -13,10 +13,13 @@
         color: $gray;
       }
     }
+
     .profile-actions {
       .actions-item {
         @extend %border-bottom-gray;
+
         display: flex;
+
         .primary-btn {
           width: 50%;
           margin: 0 auto;
@@ -27,6 +30,7 @@
 
   .avatar {
     @extend %flex-centered;
+
     margin: 18px auto;
     width: 130px;
     height: 130px;

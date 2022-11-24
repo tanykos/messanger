@@ -1,26 +1,28 @@
 .field-floating {
   padding-bottom: 10px;
+
   .inp {
-  position: relative;
-  margin: auto;
-  width: 100%;
-  max-width: 280px;
-  border-radius: 3px;
-  overflow: hidden;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 3px;
+    overflow: hidden;
   }
 
   .label {
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     font-size: 16px;
     font-weight: 500;
     color: $gray;
     transform-origin: 0 0;
-    transform: translate3d(0,0,0);
-    transition: all .2s ease;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
     pointer-events: none;
   }
+
   .focus-bg {
     position: absolute;
     top: 0;
@@ -31,8 +33,8 @@
     transform: scaleX(0);
     transform-origin: left;
   }
+
   input {
-    -webkit-appearance: none;
     appearance: none;
     box-sizing: border-box;
     width: 100%;
@@ -42,28 +44,31 @@
     height: 56px;
     font-size: 16px;
     font-weight: 400;
-    box-shadow: inset 0 -1px 0 rgba($primary,.9);
-    transition: all .15s ease;
+    box-shadow: inset 0 -1px 0 rgba($primary, 0.9);
+    transition: all 0.15s ease;
 
     &:hover {
       box-shadow: inset 0 -1px 0 $primary;
-    };
-    
+    }
+
     &:not(:placeholder-shown) {
       + .label {
         color: $gray;
-        transform: translate3d(0,-24px,0) scale(.75);
+        transform: translate3d(0, -24px, 0) scale(0.75);
       }
     }
+
     &:focus {
       outline: none;
       box-shadow: inset 0 -2px 0 $primary;
+
       + .label {
         color: $gray;
-        transform: translate3d(0,-24px,0) scale(.75);
+        transform: translate3d(0, -24px, 0) scale(0.75);
+
         + .focus-bg {
           transform: scaleX(1);
-          transition: all .1s ease;
+          transition: all 0.1s ease;
         }
       }
     }
