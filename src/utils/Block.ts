@@ -10,9 +10,9 @@ class Block {
 
   private _element: HTMLElement | null = null;
 
-  private _meta: { tagName: string, props: any };
+  private _meta: { props: any };
 
-  private props: any;
+  props: any;
 
   private eventBus: () => EventBus;
 
@@ -23,10 +23,9 @@ class Block {
    * @returns {void}
    */
 
-  constructor(tagName = 'div', props: any = {}) {
+  constructor(props: any = {}) {
     const eventBus = new EventBus();
     this._meta = {
-      tagName,
       props,
     };
 
@@ -45,13 +44,8 @@ class Block {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
-  }
-
   init() {
-    this._createResources();
+    // this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
@@ -59,7 +53,9 @@ class Block {
     this.componentDidMount();
   }
 
-  componentDidMount() { }
+  protected componentDidMount() {
+
+  }
 
   dispatchComponentDidMoun() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -88,17 +84,20 @@ class Block {
   }
 
   _render() {
-    const block = this.render();
+    const fragment = this.render();
+    const newElement = fragment.firstElementChild as HTMLElement;
 
-    this._removeEvents();
+    if (this.element) {
+      this._removeEvents();
+      this._element?.replaceWith(newElement);
+    }
 
-    this._element!.innerHTML = block;
-
+    this._element = newElement;
     this._addEvents();
   }
 
-  render(): string {
-    return '';
+  protected render(): DocumentFragment {
+    return new DocumentFragment();
   }
 
   getContent(): HTMLElement | null {
@@ -149,6 +148,15 @@ class Block {
 
   _createDocumentElement(tagName: string): HTMLElement {
     return document.createElement(tagName);
+  }
+
+  compile(template: (context: any) => string, context: any) {
+    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
+    const htmlString = template(context);
+
+    fragment.innerHTML = htmlString;
+
+    return fragment.content;
   }
 
   // show() {

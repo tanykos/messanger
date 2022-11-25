@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "sprint_1",
   "scripts": {
-    "dev": "parcel src/markup/index.hbs --no-cache --open",
-    "build": "parcel build src/markup/index.hbs --no-cache",
+    "dev": "parcel src/index.html --no-cache --open",
+    "build": "parcel build src/index.html --no-cache",
     "start": "npm run build && node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,14 +21,14 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-    "@parcel/transformer-sass": "2.7.0",
+    "@parcel/transformer-sass": "2.8.0",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-plugin-import": "^2.25.2",
-    "parcel": "2.7.0",
+    "parcel": "2.8.0",
     "stylelint": "^14.15.0",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-config-standard-scss": "^6.1.0",
