@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
 class Block {
@@ -8,11 +10,17 @@ class Block {
     FLOW_RENDER: 'flow:render',
   };
 
+  static componentName: string;
+
+  public id = nanoid(6);
+
   private _element: HTMLElement | null = null;
 
   private _meta: { props: any };
 
   props: any;
+
+  protected children: Record<string, Block>;
 
   private eventBus: () => EventBus;
 
@@ -23,13 +31,19 @@ class Block {
    * @returns {void}
    */
 
-  constructor(props: any = {}) {
+  constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus();
+    const { props, children } = this.getPropsAndChildren(propsAndChildren);
+
+    this.children = children;
+
     this._meta = {
       props,
     };
 
     this.props = this._makePropsProxy(props);
+
+    this.initChildren();
 
     this.eventBus = () => eventBus;
 
@@ -84,7 +98,9 @@ class Block {
   }
 
   _render() {
-    const fragment = this.render();
+    const templateString = this.render();
+    console.log('this.props: ', this.props);
+    const fragment = this.compile(templateString, { ...this.props });
     const newElement = fragment.firstElementChild as HTMLElement;
 
     if (this.element) {
@@ -96,8 +112,8 @@ class Block {
     this._addEvents();
   }
 
-  protected render(): DocumentFragment {
-    return new DocumentFragment();
+  protected render(): string {
+    return '';
   }
 
   getContent(): HTMLElement | null {
@@ -114,8 +130,9 @@ class Block {
       },
 
       set(target: Record<string, unknown>, prop: string, value: unknown) {
+        const oldProps = { ...target };
         target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
         return true;
       },
       deleteProperty() {
@@ -150,13 +167,62 @@ class Block {
     return document.createElement(tagName);
   }
 
-  compile(template: (context: any) => string, context: any) {
+  compile(templateString: string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
-    const htmlString = template(context);
+    // const htmlString = template(context);
+    // console.log('htmlString: ', htmlString);
+
+    // Object.entries(this.children).forEach(([key, child]) => {
+    //   if (Array.isArray(child)) {
+    //     context[key] = child.map((ch) => `<div data-id="id-${ch.id}"></div>`);
+
+    //     return;
+    //   }
+
+    //   context[key] = `<div data-id="id-${child.id}"></div>`;
+    // });
+
+    const template = Handlebars.compile(templateString);
+    const htmlString = template({ ...context, children: this.children });
 
     fragment.innerHTML = htmlString;
 
+    console.log('fragment: ', fragment.innerHTML);
+    console.log('template: ', template);
+    console.log('context: ', context);
+
+    Object.entries(this.children).forEach(([key, child]) => {
+      const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
+
+      if (!stub) {
+        return;
+      }
+
+      stub.replaceWith(child.getContent()!);
+    });
+
     return fragment.content;
+  }
+
+  getPropsAndChildren(propsAndChildren: any) {
+    const children: any = {};
+    const props: any = {};
+
+    Object.entries(propsAndChildren).forEach(([key, value]) => {
+      if (value instanceof Block) {
+        children[key] = value;
+      } else if (Array.isArray(value) && value.every((v) => (v instanceof Block))) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    });
+
+    return { props, children };
+  }
+
+  protected initChildren() {
+
   }
 
   // show() {

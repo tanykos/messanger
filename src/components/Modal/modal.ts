@@ -1,0 +1,24 @@
+import Block from '../../utils/Block';
+
+class Modal extends Block {
+  constructor() {
+    super();
+  }
+
+  static componentName = 'Modal';
+
+  render() {
+    /* html */
+    return `
+    <div id="popup" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Coming soon...</p>
+      </div>
+    </div>
+    `;
+  }
+}
+
+export default Modal;

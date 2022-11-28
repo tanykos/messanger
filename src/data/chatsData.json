@@ -1,0 +1,46 @@
+{
+  "chatsList": [
+    {
+      "chatName": "Дима",
+      "chatCounter": "",
+      "lastMessage": "Сообщение",
+      "date": "1 ноября 2022"
+    },
+    {
+      "chatName": "Алена",
+      "chatCounter": "5",
+      "lastMessage": "Сообщение",
+      "date": "2 ноября 2022"
+    },
+    {
+      "chatName": "Friends",
+      "chatCounter": "1",
+      "lastMessage": "Сообщение",
+      "date": "3 ноября 2022"
+    },
+    {
+      "chatName": "The best friend",
+      "chatCounter": "",
+      "lastMessage": "Сообщение",
+      "date": "4 ноября 2022"
+    },
+    {
+      "chatName": "Дима",
+      "chatCounter": "9",
+      "lastMessage": "Сообщение",
+      "date": "1 ноября 2022"
+    },
+    {
+      "chatName": "Алена",
+      "chatCounter": "",
+      "lastMessage": "Сообщение",
+      "date": "2 ноября 2022"
+    },
+    {
+      "chatName": "Friends",
+      "chatCounter": "",
+      "lastMessage": "Сообщение",
+      "date": "3 ноября 2022"
+    }
+  ]
+}

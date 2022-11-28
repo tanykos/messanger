@@ -1,0 +1,156 @@
+{
+  "profile": 
+    {
+      "user-name": "Николь",
+      "isEdit": false
+    },
+  "profile-inputs": [
+    {
+      "name": "email",
+      "label": "Почта",
+      "type": "email",
+      "required": true,
+      "value": "email@test.com"
+    },
+    {
+      "name": "login",
+      "label": "Логин",
+      "type": "text",
+      "required": true,
+      "value": "СуперЛогин"
+    },
+    {
+      "name": "first_name",
+      "label": "Имя",
+      "type": "text",
+      "required": true,
+      "value": "Николь"
+    },
+    {
+      "name": "second_name",
+      "label": "Фамилия",
+      "type": "text",
+      "required": true,
+      "value": "Кидман"
+    },
+    {
+      "name": "display_name",
+      "label": "Имя в чате",
+      "type": "text",
+      "required": true,
+      "value": "Супер Николь"
+    },
+    {
+      "name": "phone",
+      "label": "Телефон",
+      "type": "text",
+      "required": true,
+      "value": "(444)777-777-77"
+    }
+  ],
+  "profile-actions": [
+    {
+      "link-title": "Изменить данные",
+      "link-class": "",
+      "linkHref": "./profileEdit-page"
+    },
+    {
+      "link-title": "Изменить пароль",
+      "link-class": "",
+      "linkHref": "./profilePassword-page"
+    },
+    {
+      "link-title": "Выйти",
+      "link-class": "red",
+      "linkHref": "./listChats-page"
+    }
+  ],
+  "profile-edit": 
+    {
+      "user-name": "",
+      "isEdit": true
+    },
+  "profile-edit-inputs": [
+    {
+      "name": "email",
+      "label": "Почта",
+      "type": "email",
+      "required": true,
+      "value": "email@test.com"
+    },
+    {
+      "name": "login",
+      "label": "Логин",
+      "type": "text",
+      "required": true,
+      "value": "СуперЛогин"
+    },
+    {
+      "name": "first_name",
+      "label": "Имя",
+      "type": "text",
+      "required": true,
+      "value": "Николь"
+    },
+    {
+      "name": "second_name",
+      "label": "Фамилия",
+      "type": "text",
+      "required": true,
+      "value": "Кидман"
+    },
+    {
+      "name": "display_name",
+      "label": "Имя в чате",
+      "type": "text",
+      "required": true,
+      "value": "Супер Николь"
+    },
+    {
+      "name": "phone",
+      "label": "Телефон",
+      "type": "text",
+      "required": true,
+      "value": "(444)777-777-77"
+    }
+  ],
+  "profile-edit-actions": [
+    {
+      "link-title": "Сохранить",
+      "link-class": "primary-btn",
+      "linkHref": "./profile-page"
+    }
+  ],
+  "profile-password": 
+    {
+      "user-name": "",
+      "isEdit": true
+    },
+  "profile-password-inputs": [
+    {
+      "name": "oldPassword",
+      "label": "Старый пароль",
+      "type": "password",
+      "required": true
+    },
+    {
+      "name": "newPassword",
+      "label": "Новый пароль",
+      "type": "password",
+      "required": true
+    },
+    {
+      "name": "newPassword2",
+      "label": "Повторите новый пароль",
+      "type": "password",
+      "required": true
+    }
+  ],
+  "profile-password-actions": [
+    {
+      "link-title": "Сохранить",
+      "link-class": "primary-btn",
+      "linkHref": "./profile-page"
+    }
+  ]
+}

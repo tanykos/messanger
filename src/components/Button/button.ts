@@ -1,20 +1,25 @@
 import Block from '../../utils/Block';
-import template from './button.hbs';
+// import styles from './button.hbs';
 
 interface ButtonProps {
   label: string;
-  events?: {
-    click?: () => void
-  }
+  onClick?: () => void
 }
 
 class Button extends Block {
-  constructor(props: ButtonProps) {
-    super(props);
+  constructor({ label, onClick }: ButtonProps) {
+    super({
+      label,
+      events: {
+        click: onClick,
+      },
+    });
   }
 
+  static componentName = 'Button';
+
   render() {
-    return this.compile(template, { ...this.props });
+    return '<button class="primary-btn" type="submit">{{label}}</button>';
   }
 }
 

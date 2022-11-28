@@ -1,0 +1,115 @@
+.layout-col-2 {
+  .sidebar-chat {
+    @extend %sidebar;
+
+    width: 310px;
+    align-items: start;
+    flex-direction: column;
+    padding: 0 16px;
+
+    header {
+      @extend %flex-column;
+
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .input-search {
+      display: block;
+      width: 88%;
+      max-width: 100%;
+      height: 32px;
+      font-size: 12px;
+      line-height: 32px;
+      color: #495057;
+      background-color: $bg-img;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .has-search .input-search {
+      padding-left: 32px;
+    }
+
+    .has-search .input-search-icon {
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: 36px;
+      height: 36px;
+      line-height: 36px;
+      text-align: center;
+      pointer-events: none;
+      color: $gray;
+    }
+
+    .chat-section {
+      width: 100%;
+      border-top: 1px solid $border-gray;
+    }
+
+    .chat-link {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: var(--item-height, 50px);
+      transition: color 0.2s;
+      color: inherit;
+      padding-top: 12px;
+      padding-bottom: 12px;
+
+      &:hover {
+        background-color: $bg-hover;
+      }
+    }
+
+    .chat-avatar {
+      height: 47px;
+      width: 47px;
+      border-radius: 50%;
+      background-color: $bg-img;
+    }
+
+    .chat-item {
+      @extend %flex-column;
+
+      margin-left: 12px;
+      width: 251px;
+
+      .chat-item-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        &:first-child {
+          margin-bottom: 5px;
+        }
+
+        .chat-item-bold {
+          max-width: 70%;
+          font-weight: bold;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        .chat-item-message,
+        .chat-item-date {
+          color: $gray;
+        }
+
+        .chat-counter {
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          background: $primary;
+          color: $text-white;
+          text-align: center;
+          line-height: 20px;
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
