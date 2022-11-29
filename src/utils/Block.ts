@@ -99,7 +99,7 @@ class Block {
 
   _render() {
     const templateString = this.render();
-    console.log('this.props: ', this.props);
+    // console.log('this.props: ', this.props);
     const fragment = this.compile(templateString, { ...this.props });
     const newElement = fragment.firstElementChild as HTMLElement;
 
@@ -187,9 +187,9 @@ class Block {
 
     fragment.innerHTML = htmlString;
 
-    console.log('fragment: ', fragment.innerHTML);
-    console.log('template: ', template);
-    console.log('context: ', context);
+    // console.log('fragment: ', fragment.innerHTML);
+    // console.log('template: ', template);
+    // console.log('context: ', context);
 
     Object.entries(this.children).forEach(([key, child]) => {
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);

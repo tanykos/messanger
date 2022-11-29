@@ -12,3 +12,14 @@ a.primary-btn {
   text-align: center;
   line-height: 37px;
 }
+
+.icon-btn {
+  background: transparent;
+  color: $gray;
+  transition: all 0.3s;
+
+  &:hover {
+    color: $primary;
+    filter: brightness(85%);
+  }
+}

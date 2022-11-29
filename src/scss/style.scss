@@ -59,6 +59,19 @@ a.red {
   color: $red;
 }
 
+.text-gray {
+  color: $gray;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 12px;
+  font-weight: 500;
+}
+
 .title-center {
   text-align: center;
 }

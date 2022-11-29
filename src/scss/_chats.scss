@@ -1,8 +1,10 @@
+@import "mixins";
+
 .layout-col-2 {
   .sidebar-chat {
     @extend %sidebar;
 
-    width: 310px;
+    width: calc(310px - 32px);
     align-items: start;
     flex-direction: column;
     padding: 0 16px;
@@ -57,19 +59,20 @@
       height: var(--item-height, 50px);
       transition: color 0.2s;
       color: inherit;
+      width: 278px;
+      margin-left: -16px;
+      padding-left: 16px;
       padding-top: 12px;
       padding-bottom: 12px;
 
       &:hover {
         background-color: $bg-hover;
+        transition: all 0.3s;
       }
     }
 
     .chat-avatar {
-      height: 47px;
-      width: 47px;
-      border-radius: 50%;
-      background-color: $bg-img;
+      @include circle(47px, $bg-img);
     }
 
     .chat-item {
@@ -112,4 +115,112 @@
       }
     }
   }
+
+  header .row-items-3 {
+    @include row-items-3(16px, 24px, 12px, 12px);
+
+    .item-1 {
+      .chat-avatar {
+        @include circle(34px, $bg-img);
+      }
+    }
+
+    .item-3 {
+      .chat-avatar {
+        @include circle(25px, transparent);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-dark;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $bg-img;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.layout-footer-stick {
+  @include layout-footer-stick;
+
+  .content-scroll {
+    margin: 0 24px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-top: 1px solid $border-gray;
+    border-bottom: 1px solid $border-gray;
+  }
+
+  footer .row-items-3 {
+    @include row-items-3(16px, 24px, 12px, 12px);
+
+    margin: 0 10px;
+
+    .icon-btn {
+      height: 36px;
+      font-size: 21px;
+    }
+
+    .chat-avatar {
+      font-size: 21px;
+    }
+  }
+}
+
+.chat-detail {
+  font-size: 12px;
+
+  .chat-date {
+    color: $gray;
+  }
+
+  .message {
+    width: fit-content;
+    min-width: 50px;
+    max-width: 60%;
+    background-color: $bg-gray-2;
+    border-radius: 5px;
+    padding: 5px 16px;
+
+    &.message-user {
+      margin-left: auto;
+      margin-right: 16px;
+      background-color: $bg-hover;
+    }
+
+    p {
+      margin: 5px 0;
+    }
+
+    .message-time {
+      text-align: end;
+      font-size: 9px;
+      color: $gray;
+    }
+  }
+}
+
+.chat-textarea {
+  box-sizing: border-box;
+  margin: 10px 0;
+  vertical-align: middle;
+  width: 100%;
+  min-width: 0;
+  padding: 7px 60px 7px 14px;
+  min-height: 36px;
+  line-height: 20px;
+  font-size: 14px;
+  background-color: $bg-img;
+  color: rgb(51 51 51);
+  transition: border 0.2s ease 0s;
+  appearance: none;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  max-height: 58vh;
 }

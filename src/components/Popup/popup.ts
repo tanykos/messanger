@@ -1,16 +1,16 @@
 import Block from '../../utils/Block';
 
-class Modal extends Block {
+class Popup extends Block {
   constructor() {
     super();
   }
 
-  static componentName = 'Modal';
+  static componentName = 'Popup';
 
   render() {
     /* html */
     return `
-    <div id="modal" class="modal">
+    <div id="popup" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -21,4 +21,4 @@ class Modal extends Block {
   }
 }
 
-export default Modal;
+export default Popup;

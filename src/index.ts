@@ -17,6 +17,7 @@ import Modal from './components/Modal';
 import InputInline from './components/InputInline';
 import ErrorLayout from './components/ErrorLayout';
 import ChatSection from './components/ChatSection';
+import Popup from './components/Popup';
 import registerComponent from './utils/registerComponent';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(InputInline);
   registerComponent(ErrorLayout);
   registerComponent(ChatSection);
+  registerComponent(Popup);
 
   const loginPage = new LoginPage({
     buttonLabel: 'Click me1',
@@ -83,23 +85,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Modal
-  const popup = document.getElementById('popup');
+  const modal = document.getElementById('modal');
   // let span = document.getElementsByClassName("close")[0];
   const span: HTMLElement = document.getElementsByClassName('close')[0] as HTMLElement;
   const modalShown: HTMLElement = document.querySelector('.modal-show') as HTMLElement;
 
   if (modalShown) {
     modalShown.addEventListener('click', () => {
-      popup!.style.display = 'block';
+      modal!.style.display = 'block';
     });
     // Close the modal
     span.onclick = () => {
-      popup!.style.display = 'none';
+      modal!.style.display = 'none';
     };
 
     window.onclick = (event) => {
-      if (event.target === popup) {
-        popup!.style.display = 'none';
+      if (event.target === modal) {
+        modal!.style.display = 'none';
       }
     };
   }
