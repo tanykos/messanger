@@ -11,7 +11,6 @@ class ListChatsPage extends Block {
   }
 
   render() {
-    console.log('chatsData', chatsData);
     /* html */
     return `
     <main class="layout-col-2 layout-footer-stick">

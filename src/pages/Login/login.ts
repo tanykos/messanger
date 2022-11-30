@@ -1,17 +1,15 @@
-import InputForm from '../../components/InputForm';
-// import Button from '../../components/Button';
 import Block from '../../utils/Block';
 import formsData from '../../data/formsData.json';
 import fieldsData from '../../data/fieldsData.json';
-// import template from './login.hbs';
+import getFormValues from '../../utils/getFormValues';
 
 class LoginPage extends Block {
   constructor(props: { buttonLabel: string }) {
     super({
       ...props,
-      onClick: () => console.log('Clicked'),
       formData: formsData['login-form'],
       formInputs: fieldsData['login-form'],
+      onClick: (e : Event) => getFormValues(e, 'login-form'),
     });
   }
 
@@ -19,7 +17,7 @@ class LoginPage extends Block {
     /* html */
     return `
       <main class="items-center">
-        <form class="form-center" action="./pages/listChats-page">
+        <form id="login-form" class="form-center">
           <h1 class="title-center">{{formData.title}}</h1>
 
           <div class="form-center-content">
@@ -31,6 +29,7 @@ class LoginPage extends Block {
           <div class="form-center-actions">
             {{{Button label=formData.buttonLabel onClick=onClick}}}            
             <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>
+            <a href="./pages/listChats-page" class="action-link">Перейти в чаты</a>
           </div>
     
         </form>

@@ -4,7 +4,6 @@ import profileData from '../../data/profileData.json';
 class ProfileEditPage extends Block {
   constructor() {
     super({
-      onClick: () => console.log('Clicked'),
       pageData: profileData['profile-edit'],
       inputsData: profileData['profile-edit-inputs'],
       actionsData: profileData['profile-edit-actions'],
@@ -24,7 +23,8 @@ class ProfileEditPage extends Block {
       <div class="main-content">
         {{{ProfileContent pageData=pageData
           inputsData=inputsData
-          actionsData=actionsData}}}
+          actionsData=actionsData
+          formId="profileEditForm"}}}
       </div>
     </main>
     `;

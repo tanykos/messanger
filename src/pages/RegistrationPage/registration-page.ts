@@ -1,16 +1,14 @@
-// import InputForm from '../../components/InputForm';
-// import Button from '../../components/Button';
 import Block from '../../utils/Block';
 import formsData from '../../data/formsData.json';
 import fieldsData from '../../data/fieldsData.json';
-// import template from './login.hbs';
+import getFormValues from '../../utils/getFormValues';
 
 class RegistrationPage extends Block {
   constructor() {
     super({
-      onClick: () => console.log('Clicked'),
       formData: formsData['registration-form'],
       formInputs: fieldsData['registration-form'],
+      onClick: (e : Event) => getFormValues(e, 'reg-form'),
     });
   }
 
@@ -18,7 +16,7 @@ class RegistrationPage extends Block {
     /* html */
     return `
       <main class="items-center">
-        <form class="form-center">
+        <form id="reg-form" class="form-center">
           <h1 class="title-center">{{formData.title}}</h1>
 
           <div class="form-center-content">

@@ -4,7 +4,6 @@ import profileData from '../../data/profileData.json';
 class ProfilePasswordPage extends Block {
   constructor() {
     super({
-      onClick: () => console.log('Clicked'),
       pageData: profileData['profile-password'],
       inputsData: profileData['profile-password-inputs'],
       actionsData: profileData['profile-password-actions'],
@@ -24,7 +23,8 @@ class ProfilePasswordPage extends Block {
       <div class="main-content">
         {{{ProfileContent pageData=pageData
           inputsData=inputsData
-          actionsData=actionsData}}}
+          actionsData=actionsData
+          formId="passwordForm"}}}
       </div>
     </main>
     `;
