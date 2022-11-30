@@ -5,8 +5,8 @@ class ListChatsPage extends Block {
   constructor() {
     super({
       onClick: () => console.log('Clicked'),
-      chatDetails: chatsData.chatDetails,
       chatsData: chatsData.chatsList,
+      chatDetails: chatsData.chatsList[0].chatDetails,
     });
   }
 
@@ -46,34 +46,19 @@ class ListChatsPage extends Block {
                 </span>
                 <span class="item-2 text-bold">ChatName</span>
                 <span class="item-3">
-                  <span class="chat-avatar"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+                  <button class="chat-avatar">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                  </button>
+                  <div class="tooltip">Tooltip</div>
                 </span>
               </div>
             </header>
 
             <div class="content-wrap">
               <div class="content-scroll">
-                <section class="chat-detail">
-                  <p class="chat-date title-center">25 ноября</p>
-                  <div class="message">
-                    <p class="message-text">Мы вынуждены отталкиваться от того, что реализация намеченных плановых заданий в значительной степени обусловливает важность кластеризации усилий. </p>
-                    <p class="message-time">13:00</p>
-                  </div>
-
-                  <div class="message message-user">
-                    <p class="message-text">Ok. </p>
-                    <p class="message-time">13:15</p>
-                  </div>
-                </section>
-
-                <section class="chat-detail">
-                  <p class="chat-date title-center">27 ноября</p>
-                  <div class="message">
-                    <p class="message-text">Мы вынуждены отталкиваться от того, что реализация намеченных плановых заданий в значительной степени обусловливает важность кластеризации усилий. </p>
-                    <p class="message-time">15:00</p>
-                  </div>
-                </section>
-                
+                {{#each chatDetails}}
+                  {{{ChatDetails chatDetails=this}}}
+                {{/each}}                
               </div>
             </div>
           
@@ -85,7 +70,8 @@ class ListChatsPage extends Block {
                   </button>
                 </span>
                 <span class="item-2">
-                  <textarea class="chat-textarea" 
+                  <textarea name="message"
+                    class="chat-textarea" 
                     data-variant="filled" 
                     data-autosize="true" 
                     autocomplete="off" 

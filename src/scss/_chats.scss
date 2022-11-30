@@ -61,9 +61,7 @@
       color: inherit;
       width: 278px;
       margin-left: -16px;
-      padding-left: 16px;
-      padding-top: 12px;
-      padding-bottom: 12px;
+      padding: 12px 16px;
 
       &:hover {
         background-color: $bg-hover;
@@ -79,7 +77,7 @@
       @extend %flex-column;
 
       margin-left: 12px;
-      width: 251px;
+      width: 220px;
 
       .chat-item-row {
         display: flex;
@@ -186,6 +184,7 @@
     background-color: $bg-gray-2;
     border-radius: 5px;
     padding: 5px 16px;
+    margin-bottom: 12px;
 
     &.message-user {
       margin-left: auto;

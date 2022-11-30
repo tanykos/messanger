@@ -18,6 +18,8 @@ import InputInline from './components/InputInline';
 import ErrorLayout from './components/ErrorLayout';
 import ChatSection from './components/ChatSection';
 import Popup from './components/Popup';
+import ChatDetails from './components/ChatDetails';
+import ChatMessage from './components/ChatMessage';
 import registerComponent from './utils/registerComponent';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(ErrorLayout);
   registerComponent(ChatSection);
   registerComponent(Popup);
+  registerComponent(ChatDetails);
+  registerComponent(ChatMessage);
 
   const loginPage = new LoginPage({
     buttonLabel: 'Click me1',
