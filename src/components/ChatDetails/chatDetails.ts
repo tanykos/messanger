@@ -4,18 +4,14 @@ interface ChatDetailsProps {
   chatDetails: {
     chatDate: string,
     messages: { messageText: string, messageTime: string, isOwner: boolean }[]
-  },
-  onClick?: () => void
+  }
 }
 
 class ChatDetails extends Block {
-  constructor({ chatDetails, onClick }: ChatDetailsProps) {
+  constructor({ chatDetails }: ChatDetailsProps) {
     super({
       messages: chatDetails.messages,
       date: chatDetails.chatDate,
-      events: {
-        click: onClick,
-      },
     });
   }
 

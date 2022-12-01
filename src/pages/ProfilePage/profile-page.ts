@@ -4,7 +4,6 @@ import profileData from '../../data/profileData.json';
 class ProfilePage extends Block {
   constructor() {
     super({
-      onClick: () => console.log('Clicked'),
       pageData: profileData.profile,
       inputsData: profileData['profile-inputs'],
       actionsData: profileData['profile-actions'],

@@ -6,10 +6,14 @@ function getFormValues(event: Event, formId: string) {
   const res = {} as any;
 
   formValues.forEach((value, key) => {
-    res[key] = value;
+    if (value) { res[key] = value; }
   });
 
-  console.log(res);
+  if (Object.keys(res).length === 0) {
+    console.log('All inputs are empty.');
+  } else {
+    console.log(res);
+  }
 }
 
 export default getFormValues;

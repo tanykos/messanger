@@ -212,6 +212,7 @@
   min-width: 0;
   padding: 7px 60px 7px 14px;
   min-height: 36px;
+  max-height: 58vh;
   line-height: 20px;
   font-size: 14px;
   background-color: $bg-img;
@@ -221,5 +222,5 @@
   border: none;
   border-radius: 30px;
   outline: none;
-  max-height: 58vh;
+  resize: none;
 }

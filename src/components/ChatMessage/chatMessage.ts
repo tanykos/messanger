@@ -5,19 +5,15 @@ interface ChatMessageProps {
     messageText: string,
     messageTime: string,
     isOwner: boolean
-  },
-  onClick?: () => void
+  }
 }
 
 class ChatMessage extends Block {
-  constructor({ messages, onClick }: ChatMessageProps) {
+  constructor({ messages }: ChatMessageProps) {
     super({
       messageText: messages.messageText,
       messageTime: messages.messageTime,
       isOwner: messages.isOwner,
-      events: {
-        click: onClick,
-      },
     });
   }
 

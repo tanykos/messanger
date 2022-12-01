@@ -17,7 +17,7 @@ class ProfileContent extends Block {
       inputsData,
       actionsData,
       formId,
-      onClick: (e : Event) => getFormValues(e, formId),
+      onSubmit: (e : Event) => getFormValues(e, formId),
     });
   }
 
@@ -44,7 +44,7 @@ class ProfileContent extends Block {
             {{#each actionsData}}
               <div class="actions-item">
                 {{#if ../pageData.isEdit}}
-                  {{{Button label=this.link-title onClick=../onClick}}}
+                  {{{Button label=this.link-title onClick=../onSubmit}}}
                 {{else}}
                   <a href="{{this.linkHref}}" class="{{this.link-class}}">{{this.link-title}}</a>
                 {{/if}}

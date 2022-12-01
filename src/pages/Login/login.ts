@@ -9,7 +9,7 @@ class LoginPage extends Block {
       ...props,
       formData: formsData['login-form'],
       formInputs: fieldsData['login-form'],
-      onClick: (e : Event) => getFormValues(e, 'login-form'),
+      onSubmit: (e : Event) => getFormValues(e, 'login-form'),
     });
   }
 
@@ -27,7 +27,7 @@ class LoginPage extends Block {
           </div>
 
           <div class="form-center-actions">
-            {{{Button label=formData.buttonLabel onClick=onClick}}}            
+            {{{Button label=formData.buttonLabel onClick=onSubmit}}}            
             <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>
             <a href="./pages/listChats-page" class="action-link">Перейти в чаты</a>
           </div>
@@ -35,13 +35,6 @@ class LoginPage extends Block {
         </form>
       </main>
     `;
-    // <a href="{{formData.buttonHref}}" class="primary-btn">{{formData.buttonLabel}}</a>
-    // {{{InputForm inputData=this}}}
-    // return `<div>
-    //           <h2>Вход</h2>
-    //           {{{Button label='Авторизоваться' onClick=onClick}}}
-    //         </div>
-    // `;
   }
 }
 

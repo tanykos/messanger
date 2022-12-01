@@ -1,15 +1,16 @@
 import Block from '../../utils/Block';
-// import styles from './button.hbs';
 
 interface ButtonProps {
-  label: string;
+  label?: string;
+  isIconBtn?: boolean;
   onClick?: () => void
 }
 
 class Button extends Block {
-  constructor({ label, onClick }: ButtonProps) {
+  constructor({ label, isIconBtn, onClick }: ButtonProps) {
     super({
       label,
+      isIconBtn,
       events: {
         click: onClick,
       },
@@ -19,8 +20,17 @@ class Button extends Block {
   static componentName = 'Button';
 
   render() {
-    return '<button class="primary-btn" type="submit">{{label}}</button>';
+    /* html */
+    return `
+    {{#if isIconBtn}}
+      <button type="submit" class="chat-avatar icon-btn"><i class="fa-solid fa-circle-arrow-right icon-primary"></i></button>
+    {{else}}
+      <button class="primary-btn" type="submit">{{label}}</button>
+    {{/if}}
+    `;
   }
 }
 
 export default Button;
+
+// <button class="chat-avatar icon-btn"><i class="fa-solid fa-circle-arrow-right icon-primary"></i></button>

@@ -8,7 +8,7 @@ class RegistrationPage extends Block {
     super({
       formData: formsData['registration-form'],
       formInputs: fieldsData['registration-form'],
-      onClick: (e : Event) => getFormValues(e, 'reg-form'),
+      onSubmit: (e : Event) => getFormValues(e, 'reg-form'),
     });
   }
 
@@ -26,7 +26,7 @@ class RegistrationPage extends Block {
           </div>
 
           <div class="form-center-actions">
-            {{{Button label=formData.buttonLabel onClick=onClick}}}            
+            {{{Button label=formData.buttonLabel onClick=onSubmit}}}            
             <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>
           </div>
     
