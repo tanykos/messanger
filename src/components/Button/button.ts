@@ -25,7 +25,7 @@ class Button extends Block {
     {{#if isIconBtn}}
       <button type="submit" class="chat-avatar icon-btn"><i class="fa-solid fa-circle-arrow-right icon-primary"></i></button>
     {{else}}
-      <button class="primary-btn" type="submit">{{label}}</button>
+      <button type="submit" class="primary-btn">{{label}}</button>
     {{/if}}
     `;
   }

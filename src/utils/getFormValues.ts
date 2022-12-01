@@ -1,6 +1,6 @@
-function getFormValues(event: Event, formId: string) {
+function getFormValues(event: Event) {
   event.preventDefault();
-  const form = document.getElementById(formId) as any;
+  const form = event.target as HTMLFormElement;
   const formValues = new FormData(form);
 
   const res = {} as any;

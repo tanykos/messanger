@@ -9,7 +9,7 @@ class LoginPage extends Block {
       ...props,
       formData: formsData['login-form'],
       formInputs: fieldsData['login-form'],
-      onSubmit: (e : Event) => getFormValues(e, 'login-form'),
+      onSubmit: (e : Event) => getFormValues(e),
     });
   }
 
@@ -17,25 +17,31 @@ class LoginPage extends Block {
     /* html */
     return `
       <main class="items-center">
-        <form id="login-form" class="form-center">
+        <div class="form-center">
           <h1 class="title-center">{{formData.title}}</h1>
 
-          <div class="form-center-content">
-            {{#each formInputs}}
-              {{{InputForm inputData=this}}}
-            {{/each}}
-          </div>
+          {{{Form onSubmit=onSubmit formId="loginForm" formInputs=formInputs formData=formData}}}
 
-          <div class="form-center-actions">
-            {{{Button label=formData.buttonLabel onClick=onSubmit}}}            
-            <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>
-            <a href="./pages/listChats-page" class="action-link">Перейти в чаты</a>
-          </div>
-    
-        </form>
+          <a href="./pages/listChats-page" class="action-link" 
+          style="margin-top: 30px; text-align: center;">Перейти в чаты</a>
+        </div>
       </main>
     `;
   }
 }
 
 export default LoginPage;
+
+// <form id="login-form">
+//           <div class="form-center-content">
+//             {{#each formInputs}}
+//               {{{InputForm inputData=this}}}
+//             {{/each}}
+//           </div>
+
+//           <div class="form-center-actions">
+//             {{{Button label=formData.buttonLabel}}}
+//             <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>
+//           </div>
+
+//         </form>

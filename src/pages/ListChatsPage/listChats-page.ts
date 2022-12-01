@@ -7,7 +7,7 @@ class ListChatsPage extends Block {
     super({
       chatsData: chatsData.chatsList,
       chatDetails: chatsData.chatsList[0].chatDetails,
-      onSubmit: (e : Event) => getFormValues(e, 'messageForm'),
+      onSubmit: (e : Event) => getFormValues(e),
     });
   }
 
@@ -63,27 +63,7 @@ class ListChatsPage extends Block {
             </div>
           
             <footer>
-              <form id="messageForm">
-                <div class="row-items-3">
-                  <span class="item-1">
-                    <button role="button" class="icon-btn">
-                      <i class="fa-solid fa-paperclip"></i>
-                    </button>
-                  </span>
-                  <span class="item-2">
-                    <textarea name="message"
-                      class="chat-textarea" 
-                      data-variant="filled" 
-                      data-autosize="true" 
-                      autocomplete="off" 
-                      placeholder="Сообщение"  
-                      style="height: 36px;"></textarea>
-                  </span>
-                  <span class="item-3">
-                    {{{Button onClick=onSubmit isIconBtn=true}}}
-                  </span>
-                </div>
-              </form>
+              {{{TextareaForm onSubmit=onSubmit}}}
             </footer>
           </div>
         </div>

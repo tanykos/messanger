@@ -1,5 +1,6 @@
 import Block from '../../utils/Block';
 import profileData from '../../data/profileData.json';
+import getFormValues from '../../utils/getFormValues';
 
 class ProfileEditPage extends Block {
   constructor() {
@@ -7,6 +8,7 @@ class ProfileEditPage extends Block {
       pageData: profileData['profile-edit'],
       inputsData: profileData['profile-edit-inputs'],
       actionsData: profileData['profile-edit-actions'],
+      onSubmit: (e : Event) => getFormValues(e),
     });
   }
 
@@ -24,7 +26,8 @@ class ProfileEditPage extends Block {
         {{{ProfileContent pageData=pageData
           inputsData=inputsData
           actionsData=actionsData
-          formId="profileEditForm"}}}
+          formId="profileEditForm" 
+          onSubmit=onSubmit}}}
       </div>
     </main>
     `;

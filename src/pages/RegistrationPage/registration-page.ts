@@ -8,7 +8,7 @@ class RegistrationPage extends Block {
     super({
       formData: formsData['registration-form'],
       formInputs: fieldsData['registration-form'],
-      onSubmit: (e : Event) => getFormValues(e, 'reg-form'),
+      onSubmit: (e : Event) => getFormValues(e),
     });
   }
 
@@ -16,24 +16,32 @@ class RegistrationPage extends Block {
     /* html */
     return `
       <main class="items-center">
-        <form id="reg-form" class="form-center">
+        <div class="form-center">
           <h1 class="title-center">{{formData.title}}</h1>
 
-          <div class="form-center-content">
-            {{#each formInputs}}
-              {{{InputForm inputData=this}}}
-            {{/each}}
-          </div>
+          {{{Form onSubmit=onSubmit formId="regForm" formInputs=formInputs formData=formData}}}
 
-          <div class="form-center-actions">
-            {{{Button label=formData.buttonLabel onClick=onSubmit}}}            
-            <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>
-          </div>
-    
-        </form>
+        </div>
+
       </main>
     `;
   }
 }
 
 export default RegistrationPage;
+
+// <form id="reg-form" class="form-center">
+//           <h1 class="title-center">{{formData.title}}</h1>
+
+//           <div class="form-center-content">
+//             {{#each formInputs}}
+//               {{{InputForm inputData=this}}}
+//             {{/each}}
+//           </div>
+
+//           <div class="form-center-actions">
+//             {{{Button label=formData.buttonLabel onClick=onSubmit}}}
+//             <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>
+//           </div>
+
+//         </form>

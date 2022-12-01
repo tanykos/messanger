@@ -7,6 +7,12 @@ button,
   border: none;
 }
 
+.primary-btn {
+  &:hover {
+    background: $primary-hover;
+  }
+}
+
 a.primary-btn {
   width: 100%;
   text-align: center;

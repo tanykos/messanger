@@ -21,6 +21,7 @@
     transform: translate3d(0, 0, 0);
     transition: all 0.2s ease;
     pointer-events: none;
+    white-space: nowrap;
   }
 
   .focus-bg {

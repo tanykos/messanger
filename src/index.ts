@@ -20,6 +20,8 @@ import ChatSection from './components/ChatSection';
 import Popup from './components/Popup';
 import ChatDetails from './components/ChatDetails';
 import ChatMessage from './components/ChatMessage';
+import Form from './components/Form';
+import TextareaForm from './components/TextareaForm';
 import registerComponent from './utils/registerComponent';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Popup);
   registerComponent(ChatDetails);
   registerComponent(ChatMessage);
+  registerComponent(Form);
+  registerComponent(TextareaForm);
 
   const loginPage = new LoginPage({
     buttonLabel: 'Click me1',
