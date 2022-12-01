@@ -32,5 +32,3 @@ class Button extends Block {
 }
 
 export default Button;
-
-// <button class="chat-avatar icon-btn"><i class="fa-solid fa-circle-arrow-right icon-primary"></i></button>

@@ -1,10 +1,6 @@
 import Block from '../../utils/Block';
 
 class Avatar extends Block {
-  constructor() {
-    super();
-  }
-
   static componentName = 'Avatar';
 
   render() {

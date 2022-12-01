@@ -1,10 +1,6 @@
 import Block from '../../utils/Block';
 
 class Popup extends Block {
-  constructor() {
-    super();
-  }
-
   static componentName = 'Popup';
 
   render() {

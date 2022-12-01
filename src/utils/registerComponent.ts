@@ -4,6 +4,7 @@ import Block from './Block';
 export default function registerComponent(Component: typeof Block) {
   Handlebars.registerHelper(Component.componentName, ({ hash, data }: HelperOptions) => {
     if (!data.root.children) {
+      // eslint-disable-next-line no-param-reassign
       data.root.children = {};
     }
 

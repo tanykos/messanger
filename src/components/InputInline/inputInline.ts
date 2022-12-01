@@ -1,4 +1,5 @@
 import Block from '../../utils/Block';
+import validateField from '../../utils/validateField';
 
 interface ProfileContentProps {
   inputsData: {
@@ -16,6 +17,10 @@ class InputInline extends Block {
     super({
       inputsData,
       isEdit,
+      events: {
+        focusin: (e : Event) => validateField(e.target as Element, inputsData.name),
+        focusout: (e : Event) => validateField(e.target as Element, inputsData.name),
+      },
     });
   }
 
@@ -31,14 +36,18 @@ class InputInline extends Block {
           type="{{inputsData.type}}" 
           name="{{inputsData.name}}"
           required="{{inputsData.required}}"
+          autocomplete="on"
           placeholder="&nbsp;">
+        <span id="{{inputsData.name}}" class="error" aria-live="polite">Неверное поле</span>
       {{else}}
         <input value="{{inputsData.value}}"
           readonly
           type="{{inputsData.type}}" 
           name="{{inputsData.name}}"
           required="{{inputsData.required}}"
+          autocomplete="on"
           placeholder="&nbsp;">
+          <span id="{{inputsData.name}}" class="error" aria-live="polite">Неверное поле</span>
       {{/if}}
     </div>
     `;

@@ -3,6 +3,7 @@
 
   display: flex;
   justify-content: space-between;
+  position: relative;
 
   .label {
     white-space: nowrap;
@@ -25,5 +26,11 @@
     &:read-only {
       cursor: default;
     }
+  }
+
+  .error {
+    position: absolute;
+    bottom: -12px;
+    right: 0;
   }
 }

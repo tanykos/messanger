@@ -81,6 +81,7 @@ class Block {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(oldProps: any, newProps: any) {
     return true;
   }
@@ -99,7 +100,6 @@ class Block {
 
   _render() {
     const templateString = this.render();
-    // console.log('this.props: ', this.props);
     const fragment = this.compile(templateString, { ...this.props });
     const newElement = fragment.firstElementChild as HTMLElement;
 
@@ -131,8 +131,9 @@ class Block {
 
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         const oldProps = { ...target };
-        target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
+        let newTarget = target[prop];
+        newTarget = value;
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newTarget);
         return true;
       },
       deleteProperty() {
@@ -149,7 +150,7 @@ class Block {
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.removeEventListener(event, listener);
+      this._element!.removeEventListener(event as any, listener as any);
     });
   }
 
@@ -159,7 +160,7 @@ class Block {
     if (!events) { return; }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element!.addEventListener(event, listener);
+      this._element!.addEventListener(event as any, listener as any);
     });
   }
 
@@ -169,29 +170,13 @@ class Block {
 
   compile(templateString: string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
-    // const htmlString = template(context);
-    // console.log('htmlString: ', htmlString);
-
-    // Object.entries(this.children).forEach(([key, child]) => {
-    //   if (Array.isArray(child)) {
-    //     context[key] = child.map((ch) => `<div data-id="id-${ch.id}"></div>`);
-
-    //     return;
-    //   }
-
-    //   context[key] = `<div data-id="id-${child.id}"></div>`;
-    // });
 
     const template = Handlebars.compile(templateString);
     const htmlString = template({ ...context, children: this.children });
 
     fragment.innerHTML = htmlString;
 
-    // console.log('fragment: ', fragment.innerHTML);
-    // console.log('template: ', template);
-    // console.log('context: ', context);
-
-    Object.entries(this.children).forEach(([key, child]) => {
+    Object.entries(this.children).forEach(([, child]) => {
       const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
 
       if (!stub) {
@@ -224,14 +209,6 @@ class Block {
   protected initChildren() {
 
   }
-
-  // show() {
-  //   this.getContent().style.display = "block";
-  // }
-
-  // hide() {
-  //   this.getContent().style.display = "none";
-  // }
 }
 
 export default Block;

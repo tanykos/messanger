@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import profileData from '../../data/profileData.json';
-import getFormValues from '../../utils/getFormValues';
+import validateForm from '../../utils/validateForm';
 
 class ProfilePasswordPage extends Block {
   constructor() {
@@ -8,7 +8,7 @@ class ProfilePasswordPage extends Block {
       pageData: profileData['profile-password'],
       inputsData: profileData['profile-password-inputs'],
       actionsData: profileData['profile-password-actions'],
-      onSubmit: (e : Event) => getFormValues(e),
+      onSubmit: (e : Event) => validateForm(e),
     });
   }
 

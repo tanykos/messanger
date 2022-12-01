@@ -1,9 +1,7 @@
-// import Button from './components/Button/button';
 import renderDOM from './utils/renderDOM';
 import LoginPage from './pages/Login';
 import RegistrationPage from './pages/RegistrationPage';
 import ListChatsPage from './pages/ListChatsPage';
-import ChatPage from './pages/ChatPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileEditPage from './pages/ProfileEditPage';
 import ProfilePasswordPage from './pages/ProfilePasswordPage';
@@ -39,28 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Form);
   registerComponent(TextareaForm);
 
-  const loginPage = new LoginPage({
-    buttonLabel: 'Click me1',
-  });
+  const loginPage = new LoginPage();
   const registrationPage = new RegistrationPage();
   const listChatsPage = new ListChatsPage();
-  const chatPage = new ChatPage();
   const profilePage = new ProfilePage();
   const profileEditPage = new ProfileEditPage();
   const profilePasswordPage = new ProfilePasswordPage();
   const error404Page = new Error404Page();
   const error500Page = new Error500Page();
-
-  // eslint-disable-next-line no-console
-  // const button = new Button({ label: 'Click me', events:
-  // { click: () => console.log('Clicked') } });
-
-  // renderDOM('#app', button);
-
-  // setTimeout(() => {
-  //   button.setProps({ label: 'Click me please', events:
-  // { click: () => console.log('Clicked-2') } });
-  // }, 3000);
 
   renderDOM('#app', loginPage);
 
@@ -94,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Modal
   const modal = document.getElementById('modal');
-  // let span = document.getElementsByClassName("close")[0];
   const span: HTMLElement = document.getElementsByClassName('close')[0] as HTMLElement;
   const modalShown: HTMLElement = document.querySelector('.modal-show') as HTMLElement;
 

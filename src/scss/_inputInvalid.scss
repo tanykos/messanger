@@ -1,4 +1,9 @@
 .error {
   color: $red;
   font-size: 80%;
+  display: none;
+
+  &.active {
+    display: block;
+  }
 }

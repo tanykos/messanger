@@ -29,7 +29,7 @@ class Form extends Block {
     <form id={{formId}} novalidate>
       <div class="form-center-content">
         {{#each formInputs}}
-          {{{InputForm inputData=this}}}
+          {{{InputForm onFocus=onFocus inputData=this}}}
         {{/each}}
       </div>
 

@@ -1,4 +1,5 @@
 import Block from '../../utils/Block';
+import validateField from '../../utils/validateField';
 
 interface InputFormProps {
   inputData: {
@@ -7,18 +8,18 @@ interface InputFormProps {
     required: boolean,
     type: string
   };
-  onClick?: () => void
 }
 
 class InputForm extends Block {
-  constructor({ inputData, onClick }: InputFormProps) {
+  constructor({ inputData }: InputFormProps) {
     super({
       label: inputData.label,
       name: inputData.name,
       required: inputData.required,
       type: inputData.type,
       events: {
-        click: onClick,
+        focusin: (e : Event) => validateField(e.target as Element, inputData.name),
+        focusout: (e : Event) => validateField(e.target as Element, inputData.name),
       },
     });
   }
@@ -30,12 +31,14 @@ class InputForm extends Block {
     return `
     <div class="field-floating">
       <label for="{{name}}" class="inp">
-      <input type="{{type}}" 
+      <input type="{{type}}"
         name="{{name}}"
         required="{{required}}"
+        autocomplete="on"
         placeholder="&nbsp;">
-      <span class="label">{{label}}</span>
-      <span class="focus-bg"></span>
+        <span class="label">{{label}}</span>
+        <span class="focus-bg"></span>
+        <span id="{{name}}" class="error" aria-live="polite">Неверное поле</span>
       </label>
     </div>
     `;

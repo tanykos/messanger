@@ -1,4 +1,5 @@
 import Block from '../../utils/Block';
+import validateField from '../../utils/validateField';
 
 interface TextareaFormProps {
   onSubmit?: () => void;
@@ -9,6 +10,8 @@ class TextareaForm extends Block {
     super({
       events: {
         submit: onSubmit,
+        focusin: (e : Event) => validateField(e.target as Element, 'message'),
+        focusout: (e : Event) => validateField(e.target as Element, 'message'),
       },
     });
   }
@@ -33,6 +36,7 @@ class TextareaForm extends Block {
             autocomplete="off" 
             placeholder="Сообщение"  
             style="height: 36px;"></textarea>
+            <span id="message" class="error" aria-live="polite">Введите сообщение</span>
         </span>
         <span class="item-3">
           {{{Button isIconBtn=true}}}

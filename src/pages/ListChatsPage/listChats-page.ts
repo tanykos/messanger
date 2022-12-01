@@ -1,13 +1,13 @@
 import Block from '../../utils/Block';
 import chatsData from '../../data/chatsData.json';
-import getFormValues from '../../utils/getFormValues';
+import validateForm from '../../utils/validateForm';
 
 class ListChatsPage extends Block {
   constructor() {
     super({
       chatsData: chatsData.chatsList,
       chatDetails: chatsData.chatsList[0].chatDetails,
-      onSubmit: (e : Event) => getFormValues(e),
+      onSubmit: (e : Event) => validateForm(e),
     });
   }
 

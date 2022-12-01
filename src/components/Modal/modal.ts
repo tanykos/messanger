@@ -1,10 +1,6 @@
 import Block from '../../utils/Block';
 
 class Modal extends Block {
-  constructor() {
-    super();
-  }
-
   static componentName = 'Modal';
 
   render() {

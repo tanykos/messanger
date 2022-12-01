@@ -5,7 +5,6 @@ import fieldsData from '../../data/fieldsData.json';
 class ChatPage extends Block {
   constructor() {
     super({
-      onClick: () => console.log('Clicked'),
       formData: formsData['registration-form'],
       formInputs: fieldsData['registration-form'],
     });

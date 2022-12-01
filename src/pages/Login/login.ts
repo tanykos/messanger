@@ -1,15 +1,14 @@
 import Block from '../../utils/Block';
 import formsData from '../../data/formsData.json';
 import fieldsData from '../../data/fieldsData.json';
-import getFormValues from '../../utils/getFormValues';
+import validateForm from '../../utils/validateForm';
 
 class LoginPage extends Block {
-  constructor(props: { buttonLabel: string }) {
+  constructor() {
     super({
-      ...props,
       formData: formsData['login-form'],
       formInputs: fieldsData['login-form'],
-      onSubmit: (e : Event) => getFormValues(e),
+      onSubmit: (e : Event) => validateForm(e),
     });
   }
 
@@ -31,17 +30,3 @@ class LoginPage extends Block {
 }
 
 export default LoginPage;
-
-// <form id="login-form">
-//           <div class="form-center-content">
-//             {{#each formInputs}}
-//               {{{InputForm inputData=this}}}
-//             {{/each}}
-//           </div>
-
-//           <div class="form-center-actions">
-//             {{{Button label=formData.buttonLabel}}}
-//             <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>
-//           </div>
-
-//         </form>
