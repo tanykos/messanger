@@ -31,7 +31,8 @@
               "allowDestructuring": true,
               "allowedNames": ["self"]
             }
-          ]
+          ],
+        "linebreak-style": 0
         
     }
 }
