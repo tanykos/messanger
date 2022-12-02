@@ -1,6 +1,14 @@
 # The Best Messenger
-YP Sprint 1
+YP Sprint 1:
 The best messenger was created for the assignment on the Middle Frontend Developer course by Yandex-praktikum.
+
+YP Sprint 2:
+TypeScript, ESLint и Stylelint were added to this project.
+Implemented the following:
+the component approach,
+the base block,
+EventBus,
+custom fetch.
 
 To start a project run 'npm run start'
 
