@@ -24,7 +24,7 @@ class TextareaForm extends Block {
     <form id="messageForm" novalidate>
       <div class="row-items-3">
         <span class="item-1">
-          <button role="button" class="icon-btn">
+          <button role="button" type="button" class="icon-btn">
             <i class="fa-solid fa-paperclip"></i>
           </button>
         </span>
