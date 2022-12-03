@@ -7,7 +7,7 @@ class Avatar extends Block {
     /* html */
     return `
     <div class="avatar-wrapper">
-      <img class="profile-pic" src="//:0" />
+      <img class="profile-pic" src="//:0" alt="Avatar"/>
       <div class="upload-button modal-show">
         <span class="inner-text">
           Поменять <br/> аватар

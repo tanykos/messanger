@@ -2,13 +2,22 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
-class Block {
+type BlockEvents<P = any> = {
+  init: [];
+  'flow:component-did-mount': [];
+  'flow:component-did-update': [P, P];
+  'flow:render': [];
+};
+
+type Props<P extends Record<string, unknown> = any> = { events?: Record<string, () => void> } & P;
+
+abstract class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  };
+  } as const;
 
   static componentName: string;
 
@@ -16,13 +25,13 @@ class Block {
 
   private _element: HTMLElement | null = null;
 
-  private _meta: { props: any };
+  // private _meta: { props: any };
 
-  props: any;
+  protected props: Props<P>;
 
   protected children: Record<string, Block>;
 
-  private eventBus: () => EventBus;
+  private eventBus: () => EventBus<BlockEvents<Props<P>>>;
 
   /** JSDoc
    * @param {string} tagName
@@ -31,15 +40,15 @@ class Block {
    * @returns {void}
    */
 
-  constructor(propsAndChildren: any = {}) {
-    const eventBus = new EventBus();
+  protected constructor(propsAndChildren: any = {}) {
+    const eventBus = new EventBus<BlockEvents<Props<P>>>();
     const { props, children } = this.getPropsAndChildren(propsAndChildren);
 
     this.children = children;
 
-    this._meta = {
-      props,
-    };
+    // this._meta = {
+    //   props,
+    // };
 
     this.props = this._makePropsProxy(props);
 
@@ -51,7 +60,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus: EventBus) {
+  _registerEvents(eventBus: EventBus<BlockEvents>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -75,18 +84,18 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
+  _componentDidUpdate(oldProps: Props<P>, newProps: Props<P>) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(oldProps: Props<P>, newProps: Props<P>) {
     return true;
   }
 
-  setProps = (nextProps: any) => {
+  setProps = (nextProps: Partial<Props<P>>) => {
     if (!nextProps) {
       return;
     }
@@ -120,18 +129,18 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
+  _makePropsProxy(props: Props<P>) {
     const self = this;
 
-    return new Proxy(props as unknown as object, {
-      get(target: Record<string, unknown>, prop: string) {
-        const value = target[prop];
+    return new Proxy(props, {
+      get(target, prop) {
+        const value = target[prop as string];
         return typeof value === 'function' ? value.bind(target) : value;
       },
 
-      set(target: Record<string, unknown>, prop: string, value: unknown) {
+      set(target, prop, value) {
         const oldProps = { ...target };
-        let newTarget = target[prop];
+        let newTarget = target[prop as keyof Props<P>];
         newTarget = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newTarget);
         return true;
@@ -189,21 +198,22 @@ class Block {
     return fragment.content;
   }
 
-  getPropsAndChildren(propsAndChildren: any) {
-    const children: any = {};
-    const props: any = {};
+  getPropsAndChildren(propsAndChildren: Props<P>):
+  { props: Props<P>, children: Record<string, Block> } {
+    const children: Record<string, Block> = {};
+    const props = {} as Record<string, unknown>;
 
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
       } else if (Array.isArray(value) && value.every((v) => (v instanceof Block))) {
-        children[key] = value;
+        children[key] = value as any;
       } else {
         props[key] = value;
       }
     });
 
-    return { props, children };
+    return { props: props as Props<P>, children };
   }
 
   protected initChildren() {
