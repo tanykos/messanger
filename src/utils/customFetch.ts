@@ -18,29 +18,44 @@ interface CustomFetchProps {
   data?: Document | XMLHttpRequestBodyInit | null | undefined;
 }
 
+type HTTPMethod = (url: string, options?: CustomFetchProps) => Promise<unknown>;
+
 export default class CustomFetch {
-  get = (url:string, options: CustomFetchProps = {}) => this.request(
-    url,
-    { ...options, method: Methods.get },
-    options.timeout,
+  get: HTTPMethod = (url, options = {}) => {
+    const { data } = options;
+    let url2 = url;
+    if (data) {
+      url2 += queryStringify(data);
+    }
+    return this.request(
+      url2,
+      { ...options, method: Methods.get },
+      options.timeout,
+    );
+  };
+
+  post: HTTPMethod = (url, options = {}) => (
+    this.request(
+      url,
+      { ...options, method: Methods.post },
+      options.timeout,
+    )
   );
 
-  post = (url:string, options: CustomFetchProps = {}) => this.request(
-    url,
-    { ...options, method: Methods.post },
-    options.timeout,
+  put: HTTPMethod = (url, options = {}) => (
+    this.request(
+      url,
+      { ...options, method: Methods.put },
+      options.timeout,
+    )
   );
 
-  put = (url:string, options: CustomFetchProps = {}) => this.request(
-    url,
-    { ...options, method: Methods.put },
-    options.timeout,
-  );
-
-  delete = (url:string, options: CustomFetchProps = {}) => this.request(
-    url,
-    { ...options, method: Methods.delete },
-    options.timeout,
+  delete: HTTPMethod = (url, options = {}) => (
+    this.request(
+      url,
+      { ...options, method: Methods.delete },
+      options.timeout,
+    )
   );
 
   request = (url: string, options: CustomFetchProps, timeout = 5000) => {
@@ -55,11 +70,11 @@ export default class CustomFetch {
       }
       xhr.timeout = timeout;
 
-      if (method === Methods.get && data) {
-        // for adding queryparams to url
-        // eslint-disable-next-line no-param-reassign
-        url += queryStringify(data);
-      }
+      // if (method === Methods.get && data) {
+      // for adding queryparams to url
+      // eslint-disable-next-line no-param-reassign
+      // url += queryStringify(data);
+      // }
 
       xhr.open(method as string, url);
 
