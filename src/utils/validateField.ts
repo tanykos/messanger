@@ -1,5 +1,6 @@
-function validateField(target: Element, inputName: string) {
+function validateField(target: Element, targetName?: string) {
   const input = target as HTMLFormElement;
+  const inputName = targetName || (target as HTMLFormElement).name;
   const spanError = document.getElementById(inputName);
 
   if (!spanError) {

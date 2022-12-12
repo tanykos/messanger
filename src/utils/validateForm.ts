@@ -8,7 +8,7 @@ function validateForm(event: Event) {
   const formValues = new FormData(form);
 
   Array.from(form.elements).forEach((element: any) => {
-    validateField(element, element.name);
+    validateField(element);
   });
 
   // Output input's values to the console.

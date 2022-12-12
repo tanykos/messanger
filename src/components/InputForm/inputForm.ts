@@ -18,8 +18,8 @@ class InputForm extends Block {
       required: inputData.required,
       type: inputData.type,
       events: {
-        focusin: (e : Event) => validateField(e.target as Element, inputData.name),
-        focusout: (e : Event) => validateField(e.target as Element, inputData.name),
+        focusin: (e : Event) => validateField(e.target as Element),
+        focusout: (e : Event) => validateField(e.target as Element),
       },
     });
   }

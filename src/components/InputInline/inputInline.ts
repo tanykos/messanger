@@ -18,8 +18,8 @@ class InputInline extends Block {
       inputsData,
       isEdit,
       events: {
-        focusin: (e : Event) => validateField(e.target as Element, inputsData.name),
-        focusout: (e : Event) => validateField(e.target as Element, inputsData.name),
+        focusin: (e : Event) => validateField(e.target as Element),
+        focusout: (e : Event) => validateField(e.target as Element),
       },
     });
   }
