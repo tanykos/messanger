@@ -1,17 +1,24 @@
-@import '../../static/normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
-@import 'variables';
-
-@import 'input-floating';
-@import 'form-center';
-@import 'button';
-@import 'input-inline';
-@import 'profile-page';
-@import 'modal';
-@import 'avatar';
-
+@use "sass:color";
+@import "../../static/normalize.css";
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap";
+@import "variables";
+@import "input-floating";
+@import "form-center";
+@import "button";
+@import "input-inline";
+@import "profile-page";
+@import "modal";
+@import "avatar";
+@import "chats";
+@import "popup";
+@import "inputInvalid";
 
 // ====== general styles ======
+%sidebar {
+  display: flex;
+  background-color: $bg-gray;
+  border-right: 1px solid $border-gray;
+}
 %flex-h100 {
   min-height: 100vh;
   display: flex;
@@ -25,10 +32,16 @@
 
 %border-bottom-gray {
   padding-bottom: 6px;
-  margin-top: 6px;
+  margin-top: 10px;
+
   &:not(:last-child) {
     border-bottom: 1px solid $border-gray;
   }
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -38,6 +51,7 @@ h1 {
 a {
   text-decoration: none;
   color: $primary;
+
   &:hover {
     filter: brightness(85%);
   }
@@ -45,6 +59,19 @@ a {
 
 a.red {
   color: $red;
+}
+
+.text-gray {
+  color: $gray;
+}
+
+.text-bold {
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .title-center {
@@ -56,8 +83,9 @@ a.red {
   align-items: center;
 }
 
-main{
+main {
   @extend %flex-h100;
+
   background-color: $bg-white;
   color: $text-dark;
   font-family: $font-main;
@@ -68,13 +96,16 @@ main{
 .icon-primary {
   color: $primary;
 }
+
 .icon-link {
   margin: 18px;
+
   .icon-primary {
     width: 28px;
     height: 28px;
+
     &:hover {
-      color: darken($primary, 10%)
+      color: color.adjust($primary, $lightness: -10%);
     }
   }
 }
@@ -84,15 +115,22 @@ main{
   height: 40px;
 }
 
+.item-left {
+  margin-left: auto;
+  margin-right: 0;
+}
+
 // ======layout styles ======
 .error-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
+
   h1 {
     font-size: 40px;
   }
+
   h2 {
     font-size: 20px;
     margin-bottom: 70px;
@@ -105,9 +143,8 @@ main{
   }
 
   .side-content {
-    display: flex;
+    @extend %sidebar;
+
     align-items: center;
-    background-color: $bg-gray;
-    border-right: 1px solid $border-gray;
   }
 }

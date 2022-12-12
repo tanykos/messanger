@@ -1,3 +1,4 @@
 module.exports = {
-  partials: 'src/markup/components',
+  data: 'src/data',
+  partials: 'src/pages/components',
 };

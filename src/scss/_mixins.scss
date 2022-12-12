@@ -1,0 +1,87 @@
+@mixin circle($size, $bg) {
+  height: $size;
+  width: $size;
+  border-radius: 50%;
+  background-color: $bg;
+}
+
+@mixin row-items-3($row-m-t, $row-m-b, $item-m-l, $item-m-r ) {
+  display: flex;
+  margin: $row-m-t $row-m-b;
+
+  & > * {
+    display: flex;
+    align-items: center;
+  }
+
+  .item {
+    &-2 {
+      flex: 1;
+      margin-left: $item-m-l;
+      margin-right: $item-m-r;
+    }
+  }
+}
+
+@mixin layout-footer-stick {
+  display: flex;
+  flex: 1 1 0%;
+  height: 0;
+  width: 100%;
+  overflow: hidden auto;
+
+  .layout-wrap {
+    height: 100%;
+    width: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0px;
+
+    .scroll-wrap {
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+
+      .scroll-hidden {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0%;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+
+        .content-wrap {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          flex: 1 1 0%;
+          height: 100%;
+          width: 100%;
+          overflow: hidden;
+
+          header {
+            width: 100%;
+          }
+
+          .content-scroll {
+            position: relative;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: normal;
+            overflow: auto;
+            scrollbar-gutter: stable;
+            flex: 1 1 0%;
+          }
+        }
+
+        footer {
+          position: relative;
+          margin: 0 10px;
+          display: block;
+        }
+      }
+    }
+  }
+}

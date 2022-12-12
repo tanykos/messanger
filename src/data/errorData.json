@@ -1,0 +1,16 @@
+{
+  "error500": 
+    {
+      "numberError": "500",
+      "title": "Мы уже фиксим",
+      "linkTitle": "Вход",
+      "linkHref": "../login-page"
+    },
+  "error404":
+    {
+      "numberError": "404",
+      "title": "Не туда попали",
+      "linkTitle": "Вход",
+      "linkHref": "../login-page"
+    }
+}

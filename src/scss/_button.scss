@@ -7,8 +7,25 @@ button,
   border: none;
 }
 
+.primary-btn {
+  &:hover {
+    background: $primary-hover;
+  }
+}
+
 a.primary-btn {
   width: 100%;
   text-align: center;
   line-height: 37px;
+}
+
+.icon-btn {
+  background: transparent;
+  color: $gray;
+  transition: all 0.3s;
+
+  &:hover {
+    color: $primary;
+    filter: brightness(85%);
+  }
 }

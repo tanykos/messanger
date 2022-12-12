@@ -1,24 +1,36 @@
 .input-inline {
   @extend %border-bottom-gray;
+
   display: flex;
   justify-content: space-between;
-  
+  position: relative;
+
   .label {
     white-space: nowrap;
     pointer-events: none;
   }
+
   input {
     border: none;
-    width: -webkit-fill-available;
+    width: fill-available;
     text-align: end;
+
     &:focus {
       border: none;
     }
+
     &:focus-visible {
       outline: none;
     }
+
     &:read-only {
       cursor: default;
     }
+  }
+
+  .error {
+    position: absolute;
+    bottom: -12px;
+    right: 0;
   }
 }
