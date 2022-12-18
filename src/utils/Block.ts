@@ -11,7 +11,7 @@ type BlockEvents<P = any> = {
 
 type Props<P extends Record<string, unknown> = any> = { events?: Record<string, () => void> } & P;
 
-abstract class Block<P extends Record<string, any> = any> {
+class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -40,7 +40,7 @@ abstract class Block<P extends Record<string, any> = any> {
    * @returns {void}
    */
 
-  protected constructor(propsAndChildren: any = {}) {
+  constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus<BlockEvents<Props<P>>>();
     const { props, children } = this.getPropsAndChildren(propsAndChildren);
 

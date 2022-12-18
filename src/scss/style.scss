@@ -48,17 +48,19 @@ h1 {
   font-size: 20px;
 }
 
-a {
+a,
+.action-link {
   text-decoration: none;
   color: $primary;
 
   &:hover {
     filter: brightness(85%);
+    cursor: pointer;
   }
-}
 
-a.red {
-  color: $red;
+  &.red {
+    color: $red;
+  }
 }
 
 .text-gray {

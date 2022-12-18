@@ -48,7 +48,7 @@ class ProfileContent extends Block {
                 {{#if ../pageData.isEdit}}
                   {{{Button label=this.link-title}}}
                 {{else}}
-                  <a href="{{this.linkHref}}" class="{{this.link-class}}">{{this.link-title}}</a>
+                  {{{Link label=this.link-title to=this.linkHref logoutLink=this.logoutLink className="action-link"}}}
                 {{/if}}
               </div>
             {{/each}}
@@ -61,3 +61,5 @@ class ProfileContent extends Block {
 }
 
 export default ProfileContent;
+
+// <a href="{{this.linkHref}}" class="{{this.link-class}}">{{this.link-title}}</a>

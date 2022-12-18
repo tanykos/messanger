@@ -26,4 +26,10 @@
       margin-top: 16px;
     }
   }
+
+  .form-stretch {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
 }

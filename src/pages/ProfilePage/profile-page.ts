@@ -15,9 +15,7 @@ class ProfilePage extends Block {
     return `
     <main class="layout-col-2">
       <div class="side-content">
-        <a href="./listChats-page" class="icon-link">
-          <i class="fa-solid fa-circle-arrow-left icon-primary"></i>
-        </a>
+      {{{Link iconClass="fa-solid fa-circle-arrow-left icon-primary" to='/messenger' className="icon-link"}}}
       </div>
 
       <div class="main-content">

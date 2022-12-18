@@ -6,13 +6,18 @@ function validateForm(event: Event) {
 
   const form = event.target as HTMLFormElement;
   const formValues = new FormData(form);
+  let isFormValid = true;
 
-  Array.from(form.elements).forEach((element: any) => {
-    validateField(element);
+  const arr = Array.from(form.elements).filter((ch) => ch.nodeName === 'INPUT');
+
+  arr.forEach((element: any) => {
+    const isValid = validateField(element);
+    if (!isValid) {
+      isFormValid = false;
+    }
   });
 
   // Output input's values to the console.
-
   const res = {} as any;
 
   formValues.forEach((value, key) => {
@@ -24,6 +29,8 @@ function validateForm(event: Event) {
   } else {
     console.log(res);
   }
+
+  return isFormValid ? res : false;
 }
 
 export default validateForm;

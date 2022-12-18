@@ -52,17 +52,18 @@
     {
       "link-title": "Изменить данные",
       "link-class": "",
-      "linkHref": "./profileEdit-page"
+      "linkHref": "/profile"
     },
     {
       "link-title": "Изменить пароль",
       "link-class": "",
-      "linkHref": "./profilePassword-page"
+      "linkHref": "/password"
     },
     {
       "link-title": "Выйти",
       "link-class": "red",
-      "linkHref": "./listChats-page"
+      "logoutLink": true,
+      "linkHref": "/"
     }
   ],
   "profile-edit": 
@@ -118,7 +119,7 @@
     {
       "link-title": "Сохранить",
       "link-class": "primary-btn",
-      "linkHref": "./profile-page"
+      "linkHref": "/settings"
     }
   ],
   "profile-password": 
@@ -150,7 +151,7 @@
     {
       "link-title": "Сохранить",
       "link-class": "primary-btn",
-      "linkHref": "./profile-page"
+      "linkHref": "/settings"
     }
   ]
 }

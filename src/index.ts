@@ -20,9 +20,22 @@ import ChatDetails from './components/ChatDetails';
 import ChatMessage from './components/ChatMessage';
 import Form from './components/Form';
 import TextareaForm from './components/TextareaForm';
+import Link from './components/Link';
 import registerComponent from './utils/registerComponent';
 
-document.addEventListener('DOMContentLoaded', () => {
+import Router from './utils/Router';
+import AuthController from './controllers/AuthController';
+
+enum Routes {
+  Index = '/',
+  Register = '/signup',
+  Settings = '/settings',
+  Profile = '/profile',
+  Password = '/password',
+  Chat = '/messenger',
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(Button);
   registerComponent(InputForm);
   registerComponent(Avatar);
@@ -36,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(ChatMessage);
   registerComponent(Form);
   registerComponent(TextareaForm);
+  registerComponent(Link);
 
   const loginPage = new LoginPage();
   const registrationPage = new RegistrationPage();
@@ -46,35 +60,69 @@ document.addEventListener('DOMContentLoaded', () => {
   const error404Page = new Error404Page();
   const error500Page = new Error500Page();
 
-  renderDOM('#app', loginPage);
+  Router
+    .use(Routes.Index, LoginPage)
+    .use(Routes.Register, RegistrationPage)
+    .use(Routes.Settings, ProfilePage)
+    .use(Routes.Profile, ProfileEditPage)
+    .use(Routes.Password, ProfilePasswordPage)
+    .use(Routes.Chat, ListChatsPage);
 
-  const path = document.location.pathname;
+  let isProtectedRoute = true;
 
-  switch (path) {
-    case ('/pages/registration-page'):
-      renderDOM('#app', registrationPage);
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Register:
+      isProtectedRoute = false;
       break;
-    case ('/pages/listChats-page'):
-      renderDOM('#app', listChatsPage);
-      break;
-    case ('/pages/profile-page'):
-      renderDOM('#app', profilePage);
-      break;
-    case ('/pages/profileEdit-page'):
-      renderDOM('#app', profileEditPage);
-      break;
-    case ('/pages/profilePassword-page'):
-      renderDOM('#app', profilePasswordPage);
-      break;
-    case ('/pages/error404-page'):
-      renderDOM('#app', error404Page);
-      break;
-    case ('/pages/error500-page'):
-      renderDOM('#app', error500Page);
-      break;
-    default:
-      renderDOM('#app', loginPage);
+    default: break;
   }
+
+  try {
+    await AuthController.fetchUser();
+    Router.start();
+
+    if (!isProtectedRoute) {
+      Router.go(Routes.Profile);
+    }
+  } catch (e) {
+    Router.start();
+
+    if (isProtectedRoute) {
+      Router.go(Routes.Index);
+    }
+  }
+
+  // custom routing sprint-2
+  // renderDOM('#app', loginPage);
+
+  // const path = document.location.pathname;
+
+  // switch (path) {
+  //   case ('/pages/registration-page'):
+  //     renderDOM('#app', registrationPage);
+  //     break;
+  //   case ('/pages/listChats-page'):
+  //     renderDOM('#app', listChatsPage);
+  //     break;
+  //   case ('/pages/profile-page'):
+  //     renderDOM('#app', profilePage);
+  //     break;
+  //   case ('/pages/profileEdit-page'):
+  //     renderDOM('#app', profileEditPage);
+  //     break;
+  //   case ('/pages/profilePassword-page'):
+  //     renderDOM('#app', profilePasswordPage);
+  //     break;
+  //   case ('/pages/error404-page'):
+  //     renderDOM('#app', error404Page);
+  //     break;
+  //   case ('/pages/error500-page'):
+  //     renderDOM('#app', error500Page);
+  //     break;
+  //   default:
+  //     renderDOM('#app', loginPage);
+  // }
 
   // Modal
   const modal = document.getElementById('modal');
