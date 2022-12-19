@@ -13,10 +13,12 @@ class AuthController {
 
       await this.fetchUser();
 
+      store.set('user.error', undefined);
       Router.go('/settings');
     } catch (e: any) {
       // eslint-disable-next-line no-console
       console.error(e);
+      store.set('user.error', e);
     }
   }
 
@@ -25,11 +27,11 @@ class AuthController {
       await this.api.signup(data);
 
       await this.fetchUser();
-      // store.set('user.error', undefined)
 
+      store.set('user.error', undefined);
       Router.go('/settings');
     } catch (e: any) {
-      // store.set('user.error', e);
+      store.set('user.error', e);
 
       // eslint-disable-next-line no-console
       console.error(e.message);
@@ -49,9 +51,11 @@ class AuthController {
       await this.api.logout();
 
       Router.go('/');
+      store.set('user.error', undefined);
     } catch (e: any) {
       // eslint-disable-next-line no-console
       console.error(e.message);
+      store.set('user.error', e);
     }
   }
 }

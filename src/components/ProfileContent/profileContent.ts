@@ -1,6 +1,7 @@
 import Block from '../../utils/Block';
 
 interface ProfileContentProps {
+  formData?: Record<string, unknown>;
   pageData: string;
   inputsData: string;
   actionsData: string;
@@ -10,9 +11,10 @@ interface ProfileContentProps {
 
 class ProfileContent extends Block {
   constructor({
-    pageData, inputsData, actionsData, formId, onSubmit,
+    formData, pageData, inputsData, actionsData, formId, onSubmit,
   }: ProfileContentProps) {
     super({
+      formData,
       pageData,
       inputsData,
       actionsData,
@@ -26,6 +28,8 @@ class ProfileContent extends Block {
   static componentName = 'ProfileContent';
 
   render() {
+    // console.log('formData1: ', this.props.formData);
+    // console.log('inputsData: ', this.props.inputsData);
     /* html */
     return `
     <div class="profile-wrap">
@@ -33,12 +37,12 @@ class ProfileContent extends Block {
     
       {{{Modal}}}
     
-      <h1 class="title-center">{{pageData.user-name}}</h1>
-    
+      <h1 class="title-center">{{formData.first_name}}</h1>
+
       <form id={{formId}} novalidate>
         <div class="profile-content">
           {{#each inputsData}}
-            {{{InputInline inputsData=this isEdit=../pageData.isEdit}}}
+            {{{InputInline inputsData=this formData=../formData isEdit=../pageData.isEdit}}}
           {{/each}}
         </div>
       

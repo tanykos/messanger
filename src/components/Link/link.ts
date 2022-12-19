@@ -39,15 +39,17 @@ class BaseLink extends Block<LinkProps> {
     /* html */
     return `
     <span class="{{className}} {{#if logoutLink}}red{{/if}}">
+      {{#if label}}
+        {{ label }}
+      {{/if}}
+      
       {{#if iconClass}}
         <i class="{{iconClass}}"></i>
-      {{else}}
-        {{ label }}
       {{/if}}
     </span>
     `;
   }
 }
-
+// {iconLeft && <Icon theme={theme} xml={iconLeft} />}
 const Link = withRouter(BaseLink);
 export default Link;

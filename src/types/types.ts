@@ -22,3 +22,8 @@ export interface User {
   phone: string;
   avatar: string;
 }
+
+export interface UserPassword {
+  oldPassword: string;
+  newPassword: string;
+}

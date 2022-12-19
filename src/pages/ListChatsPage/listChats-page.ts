@@ -17,11 +17,8 @@ class ListChatsPage extends Block {
     <main class="layout-col-2 layout-footer-stick">
       <div class="sidebar-chat">
         <header>
-          <a href="./profile-page" class="icon-link item-left">
-            Профиль
-            <i class="fa-solid fa-chevron-right"></i>
-          </a>
-
+          {{{Link label="Профиль" iconClass="fa-solid fa-chevron-right" to='/settings' className="action-link icon-link item-left"}}}
+          
           <form class="form-group has-search">
             <span class="input-search-icon">
               <span class="fa fa-search"></span>
@@ -79,3 +76,8 @@ export default ListChatsPage;
 // <div class="main-content">
 //         <h4 class="text-gray">Выберите чат, чтобы отправить сообщение</h4>
 //       </div>
+
+// <a href="./profile-page" class="icon-link item-left">
+//             Профиль
+//             <i class="fa-solid fa-chevron-right"></i>
+//           </a>

@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { set } from './helpers';
+import { set, isEqual } from './helpers';
 import EventBus from './EventBus';
 import Block from './Block';
 
@@ -36,7 +36,14 @@ export function withStore(mapStateToProps: (state: any) => any) {
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
 
+          // check
+          if (isEqual(previousState, stateProps)) {
+            console.log('in store');
+            return;
+          }
+
           previousState = stateProps;
+          console.log('stateProps', stateProps);
 
           this.setProps({ ...stateProps });
         });
@@ -44,5 +51,7 @@ export function withStore(mapStateToProps: (state: any) => any) {
     };
   };
 }
+
+export const withUser = withStore((state) => (state.user || {}));
 
 export default store;

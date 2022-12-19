@@ -51,14 +51,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(TextareaForm);
   registerComponent(Link);
 
-  const loginPage = new LoginPage();
-  const registrationPage = new RegistrationPage();
-  const listChatsPage = new ListChatsPage();
-  const profilePage = new ProfilePage();
-  const profileEditPage = new ProfileEditPage();
-  const profilePasswordPage = new ProfilePasswordPage();
-  const error404Page = new Error404Page();
-  const error500Page = new Error500Page();
+  // const loginPage = new LoginPage();
+  // const registrationPage = new RegistrationPage();
+  // const listChatsPage = new ListChatsPage();
+  // const profilePage = new ProfilePage();
+  // const profileEditPage = new ProfileEditPage();
+  // const profilePasswordPage = new ProfilePasswordPage();
+  // const error404Page = new Error404Page();
+  // const error500Page = new Error500Page();
 
   Router
     .use(Routes.Index, LoginPage)
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     Router.start();
 
     if (!isProtectedRoute) {
-      Router.go(Routes.Profile);
+      Router.go(Routes.Settings);
     }
   } catch (e) {
     Router.start();

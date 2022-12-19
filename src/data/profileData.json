@@ -9,43 +9,37 @@
       "name": "email",
       "label": "Почта",
       "type": "email",
-      "required": true,
-      "value": "email@test.com"
+      "required": true
     },
     {
       "name": "login",
       "label": "Логин",
       "type": "text",
-      "required": true,
-      "value": "СуперЛогин"
+      "required": true
     },
     {
       "name": "first_name",
       "label": "Имя",
       "type": "text",
-      "required": true,
-      "value": "Николь"
+      "required": true
     },
     {
       "name": "second_name",
       "label": "Фамилия",
       "type": "text",
-      "required": true,
-      "value": "Кидман"
+      "required": true
     },
     {
       "name": "display_name",
       "label": "Имя в чате",
       "type": "text",
-      "required": true,
-      "value": "Супер Николь"
+      "required": true
     },
     {
       "name": "phone",
       "label": "Телефон",
       "type": "text",
-      "required": true,
-      "value": "(444)777-777-77"
+      "required": true
     }
   ],
   "profile-actions": [

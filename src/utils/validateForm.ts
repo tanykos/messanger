@@ -17,6 +17,17 @@ function validateForm(event: Event) {
     }
   });
 
+  // Confirm new password.
+  if (formValues.has('newPassword2')) {
+    if (formValues.get('newPassword2') === formValues.get('newPassword')) {
+      formValues.delete('newPassword2');
+    } else {
+      isFormValid = false;
+      // eslint-disable-next-line no-alert
+      alert('Новый пароль не совпадает!');
+    }
+  }
+
   // Output input's values to the console.
   const res = {} as any;
 
