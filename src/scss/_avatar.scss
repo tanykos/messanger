@@ -8,12 +8,6 @@
   transition: all 0.3s ease;
   background-color: rgb(0 0 0 / 10%);
 
-  &:hover {
-    transform: scale(1.05);
-    background-color: rgb(0 0 0 / 60%);
-    cursor: pointer;
-  }
-
   .profile-pic {
     transition: all 0.3s ease;
 
@@ -37,8 +31,14 @@
     }
   }
 
-  &:hover .profile-pic {
-    opacity: 0.5;
+  &.avatar-hover:hover {
+    transform: scale(1.05);
+    background-color: rgb(0 0 0 / 60%);
+    cursor: pointer;
+
+    .profile-pic {
+      opacity: 0.5;
+    }
   }
 
   .upload-button {

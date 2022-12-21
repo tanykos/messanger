@@ -86,18 +86,16 @@ class Router {
 
   private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
-    console.log('1');
     if (!route) {
-      console.log('2');
       return;
     }
-    console.log('3');
+
     if (this.currentRoute && this.currentRoute !== route) {
       this.currentRoute.leave();
     }
 
     this.currentRoute = route;
-    console.log('4');
+
     route.render();
   }
 

@@ -1,11 +1,14 @@
 .form-center {
   display: flex;
   flex-direction: column;
-  width: 340px;
-  min-height: 450px;
-  padding: 30px;
-  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
   border-radius: 12px;
+
+  &.form-size {
+    width: 340px;
+    min-height: 450px;
+    padding: 30px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+  }
 
   .form-center-content {
     flex: 1 0 auto;

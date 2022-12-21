@@ -1,7 +1,8 @@
 import UserAPI from '../api/UserAPI';
-import { User, UserPassword } from '../types/types';
+import { User, UserPassword, Avatar } from '../types/types';
 import store from '../utils/Store';
 import Router from '../utils/Router';
+import AuthController from './AuthController';
 
 class UserController {
   constructor(private api: UserAPI) {}
@@ -11,9 +12,9 @@ class UserController {
       console.log('controller-data', data);
       await this.api.updateUser(data);
 
-      await this.fetchUser(data.id);
+      // await this.fetchUser(data.id);
 
-      store.set('user.error', undefined);
+      await AuthController.fetchUser();
       Router.go('/settings');
     } catch (e: any) {
       store.set('user.error', e);
@@ -38,11 +39,31 @@ class UserController {
     }
   }
 
-  async fetchUser(id: number) {
-    const user = await this.api.getUser(id);
+  async updateAvatar(data: FormData, id: number) {
+    try {
+      console.log('controller-avatar', data);
+      const response = await this.api.updateAvatar(data);
 
-    store.set('user', user);
+      await AuthController.fetchUser();
+      // await this.fetchUser(id);
+
+      // store.set('user.error', undefined);
+      return response;
+      // Router.go('/profile');
+    } catch (e: any) {
+      store.set('user.error', e);
+
+      // eslint-disable-next-line no-console
+      console.error(e.message);
+      throw (e);
+    }
   }
+
+  // async fetchUser(id: number) {
+  //   const user = await this.api.getUser(id);
+  //   console.log('user-control', user);
+  //   store.set('user', user);
+  // }
 }
 
 export default new UserController(new UserAPI());

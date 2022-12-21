@@ -11,9 +11,6 @@ class Button extends Block {
     super({
       label,
       isIconBtn,
-      events: {
-        click: onClick,
-      },
     });
   }
 
@@ -32,3 +29,7 @@ class Button extends Block {
 }
 
 export default Button;
+
+// events: {
+//   click: onClick,
+// },

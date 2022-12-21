@@ -27,3 +27,8 @@ export interface UserPassword {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface Avatar {
+  id: number;
+  avatar: FormData;
+}

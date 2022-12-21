@@ -37,15 +37,15 @@ export function withStore(mapStateToProps: (state: any) => any) {
           const stateProps = mapStateToProps(store.getState());
 
           // check
-          if (isEqual(previousState, stateProps)) {
-            console.log('in store');
-            return;
+          if (!isEqual(previousState, stateProps)) {
+            console.log('skipping in store');
+            this.setProps({ ...stateProps });
           }
 
-          previousState = stateProps;
-          console.log('stateProps', stateProps);
+          previousState = { ...stateProps };
+          // console.log('stateProps', stateProps);
 
-          this.setProps({ ...stateProps });
+          // this.setProps({ ...stateProps });
         });
       }
     };

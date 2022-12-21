@@ -1,0 +1,9 @@
+{
+  "uploadAvatar": 
+    {
+      "title": "Загрузите файл",
+      "buttonLabel": "Поменять",
+      "inputLabel": "Выбрать файл на компьютере",
+      "buttonHref": "./profile"
+    }
+}

@@ -12,6 +12,7 @@
 @import "chats";
 @import "popup";
 @import "inputInvalid";
+@import "form-upload";
 
 // ====== general styles ======
 %sidebar {
@@ -48,6 +49,16 @@ h1 {
   font-size: 20px;
 }
 
+h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 12px;
+  font-weight: 500;
+}
+
 a,
 .action-link {
   text-decoration: none;
@@ -69,11 +80,6 @@ a,
 
 .text-bold {
   font-weight: 600;
-}
-
-h4 {
-  font-size: 12px;
-  font-weight: 500;
 }
 
 .title-center {

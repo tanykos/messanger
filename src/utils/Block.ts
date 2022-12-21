@@ -73,6 +73,15 @@ class Block<P extends Record<string, any> = any> {
   }
 
   _componentDidMount() {
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        child.forEach((item) => {
+          item.dispatchComponentDidMount();
+        });
+      } else {
+        child.dispatchComponentDidMount();
+      }
+    });
     this.componentDidMount();
   }
 
@@ -80,7 +89,7 @@ class Block<P extends Record<string, any> = any> {
 
   }
 
-  dispatchComponentDidMoun() {
+  dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 

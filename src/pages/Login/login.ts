@@ -23,7 +23,7 @@ class LoginPage extends Block {
     /* html */
     return `
       <main class="items-center">
-        <div class="form-center">
+        <div class="form-center form-size">
           <h1 class="title-center">{{formData.title}}</h1>
 
           {{{Form onSubmit=onSubmit 

@@ -74,3 +74,21 @@ export function isEqual(lhs: Indexed, rhs: Indexed) {
 
   return true;
 }
+
+export function openModal(event: Event, id: string):void {
+  event.preventDefault();
+  const modal = document.getElementById(id);
+
+  if (modal) {
+    modal!.style.display = 'block';
+  }
+}
+
+export function closeModal(event: Event, id: string):void {
+  event.preventDefault();
+  const modal = document.getElementById(id);
+
+  if (modal) {
+    modal!.style.display = 'none';
+  }
+}

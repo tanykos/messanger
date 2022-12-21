@@ -1,5 +1,5 @@
 import BaseAPI from './BaseAPI';
-import { User, UserPassword } from '../types/types';
+import { User, UserPassword, Avatar } from '../types/types';
 
 // export interface User {
 //   id: number;
@@ -21,10 +21,6 @@ export default class UserAPI extends BaseAPI {
   create = undefined;
 
   read = undefined;
-  // read(): Promise<User> {
-  //   console.log('data in class AuthAPI - read');
-  //   return this.http.get('');
-  // }
 
   getUser(id: number): Promise<Array<User & { role: string }>> {
     return this.http.get(`/${id}`);
@@ -36,6 +32,11 @@ export default class UserAPI extends BaseAPI {
 
   updatePassword(data: UserPassword) {
     return this.http.put('/password', data);
+  }
+
+  updateAvatar(data: FormData) {
+    console.log('updateAvarar request: ', data);
+    return this.http.put('/profile/avatar', data);
   }
 
   update = undefined;

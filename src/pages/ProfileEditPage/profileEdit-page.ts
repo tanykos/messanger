@@ -1,8 +1,10 @@
 import Block from '../../utils/Block';
 import profileData from '../../data/profileData.json';
+import modalData from '../../data/modalData.json';
 import validateForm from '../../utils/validateForm';
 import { withUser } from '../../utils/Store';
 import UserController from '../../controllers/UserController';
+import AuthController from '../../controllers/AuthController';
 
 class ProfileEditBase extends Block {
   constructor(props: any) {
@@ -11,6 +13,7 @@ class ProfileEditBase extends Block {
       pageData: profileData['profile-edit'],
       inputsData: profileData['profile-edit-inputs'],
       actionsData: profileData['profile-edit-actions'],
+      modalData: modalData.uploadAvatar,
       onSubmit: (e : Event) => this.onSubmit(e),
     });
   }
@@ -24,6 +27,7 @@ class ProfileEditBase extends Block {
   }
 
   render() {
+    console.log('formData-Edit-page: ', this.props.formData);
     /* html */
     return `
     <main class="layout-col-2">
@@ -36,7 +40,9 @@ class ProfileEditBase extends Block {
           pageData=pageData
           inputsData=inputsData
           actionsData=actionsData
+          modalData=modalData
           formId="profileEditForm" 
+          isAvatarEdit=true
           onSubmit=onSubmit}}}
       </div>
     </main>

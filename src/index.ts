@@ -21,6 +21,8 @@ import ChatMessage from './components/ChatMessage';
 import Form from './components/Form';
 import TextareaForm from './components/TextareaForm';
 import Link from './components/Link';
+import ButtonClose from './components/ButtonClose';
+import FormUpload from './components/FormUpload';
 import registerComponent from './utils/registerComponent';
 
 import Router from './utils/Router';
@@ -50,6 +52,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(Form);
   registerComponent(TextareaForm);
   registerComponent(Link);
+  registerComponent(ButtonClose);
+  registerComponent(FormUpload);
 
   // const loginPage = new LoginPage();
   // const registrationPage = new RegistrationPage();
@@ -125,23 +129,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   // }
 
   // Modal
-  const modal = document.getElementById('modal');
-  const span: HTMLElement = document.getElementsByClassName('close')[0] as HTMLElement;
-  const modalShown: HTMLElement = document.querySelector('.modal-show') as HTMLElement;
+  // const modal = document.getElementById('modal');
+  // const span: HTMLElement = document.getElementsByClassName('close')[0] as HTMLElement;
+  // const modalButtons = Array.from(document.querySelectorAll('.js-modal-btn'));
 
-  if (modalShown) {
-    modalShown.addEventListener('click', () => {
-      modal!.style.display = 'block';
-    });
-    // Close the modal
-    span.onclick = () => {
-      modal!.style.display = 'none';
-    };
+  // if (modalButtons) {
+  //   modalButtons.forEach((item) => {
+  //     item.addEventListener('click', (event) => {
+  //       event.preventDefault();
+  //     });
+  //   });
 
-    window.onclick = (event) => {
-      if (event.target === modal) {
-        modal!.style.display = 'none';
-      }
-    };
-  }
+  //   modalButtons.addEventListener('click', () => {
+  //     modal!.style.display = 'block';
+  //   });
+  // Close the modal
+  //   span.onclick = () => {
+  //     modal!.style.display = 'none';
+  //   };
+
+  //   window.onclick = (event) => {
+  //     if (event.target === modal) {
+  //       modal!.style.display = 'none';
+  //     }
+  //   };
+  // }
 });
