@@ -95,6 +95,7 @@ class Block<P extends Record<string, any> = any> {
 
   _componentDidUpdate(oldProps: Props<P>, newProps: Props<P>) {
     if (this.componentDidUpdate(oldProps, newProps)) {
+      console.log('UPDATE', oldProps, newProps);
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }

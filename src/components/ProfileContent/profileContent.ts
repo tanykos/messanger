@@ -32,7 +32,7 @@ class ProfileContent extends Block {
   static componentName = 'ProfileContent';
 
   render() {
-    console.log('formData-Content: ', this.props.formData);
+    // console.log('formData-Content: ', this.props.formData);
     const src = this.props.formData.avatar ? `https://ya-praktikum.tech/api/v2/resources/${this.props.formData.avatar}` : '//:0';
 
     /* html */

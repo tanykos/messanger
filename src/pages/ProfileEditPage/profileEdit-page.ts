@@ -2,14 +2,14 @@ import Block from '../../utils/Block';
 import profileData from '../../data/profileData.json';
 import modalData from '../../data/modalData.json';
 import validateForm from '../../utils/validateForm';
-import { withUser } from '../../utils/Store';
+import { withStore, withUser } from '../../utils/Store';
 import UserController from '../../controllers/UserController';
 import AuthController from '../../controllers/AuthController';
 
 class ProfileEditBase extends Block {
   constructor(props: any) {
     super({
-      formData: props,
+      ...props,
       pageData: profileData['profile-edit'],
       inputsData: profileData['profile-edit-inputs'],
       actionsData: profileData['profile-edit-actions'],
@@ -50,5 +50,6 @@ class ProfileEditBase extends Block {
   }
 }
 
-const ProfileEditPage = withUser(ProfileEditBase);
+// const ProfileEditPage = withUser(ProfileEditBase);
+const ProfileEditPage = withStore((state) => ({ formData: { ...state.user } }))(ProfileEditBase);
 export default ProfileEditPage;

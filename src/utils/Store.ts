@@ -12,7 +12,7 @@ export class Store extends EventBus {
 
   public set(keypath: string, data: unknown) {
     set(this.state, keypath, data);
-
+    console.log('NEW STATE: ', this.getState());
     this.emit(StoreEvents.Updated, this.getState());
   }
 
@@ -38,12 +38,13 @@ export function withStore(mapStateToProps: (state: any) => any) {
 
           // check
           if (!isEqual(previousState, stateProps)) {
-            console.log('skipping in store');
+            console.log('in store!');
             this.setProps({ ...stateProps });
+            console.log('completed update store!');
           }
 
           previousState = { ...stateProps };
-          // console.log('stateProps', stateProps);
+          console.log('stateProps', stateProps);
 
           // this.setProps({ ...stateProps });
         });

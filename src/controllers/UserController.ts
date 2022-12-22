@@ -43,7 +43,7 @@ class UserController {
     try {
       console.log('controller-avatar', data);
       const response = await this.api.updateAvatar(data);
-
+      // store.set('user', response);
       await AuthController.fetchUser();
       // await this.fetchUser(id);
 
