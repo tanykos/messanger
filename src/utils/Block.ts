@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
+import { merge } from './helpers';
 
 type BlockEvents<P = any> = {
   init: [];
@@ -110,6 +111,7 @@ class Block<P extends Record<string, any> = any> {
       return;
     }
 
+    // Object.assign(this.props, merge(this.props, nextProps));
     Object.assign(this.props, nextProps);
   };
 
@@ -150,8 +152,11 @@ class Block<P extends Record<string, any> = any> {
 
       set(target, prop, value) {
         const oldProps = { ...target };
-        let newTarget = target[prop as keyof Props<P>];
-        newTarget = value;
+        // let newTarget = target[prop as keyof Props<P>];
+        // newTarget = value;
+        // self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newTarget);
+        const newTarget = target;
+        newTarget[prop as keyof Props<P>] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newTarget);
         return true;
       },
