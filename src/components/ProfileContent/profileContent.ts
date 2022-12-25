@@ -39,15 +39,14 @@ class ProfileContent extends Block {
     return `
     <div class="profile-wrap">
       {{#if isAvatarEdit}}
-        {{{Avatar modalId="profileAvatar" avatarPath=formData.avatar}}}
+        {{{Avatar modalId="profileAvatar" avatarPath=formData.avatar}}}        
+      
+        {{{Modal modalId="profileAvatar" modalData=modalData userId=formData.id}}}
       {{else}}
         <div class="avatar-wrapper">
           <img class="profile-pic" src=${src} alt="Avatar"/>
         </div>
       {{/if}}
-
-      
-      {{{Modal modalId="profileAvatar" modalData=modalData userId=formData.id}}}
     
       <h1 class="title-center">{{formData.display_name}}</h1>
 

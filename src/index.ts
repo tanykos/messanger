@@ -23,10 +23,13 @@ import TextareaForm from './components/TextareaForm';
 import Link from './components/Link';
 import ButtonClose from './components/ButtonClose';
 import FormUpload from './components/FormUpload';
+import ChatsList from './components/ChatsList';
+import ModalOpenLink from './components/ModalOpenLink';
 import registerComponent from './utils/registerComponent';
 
 import Router from './utils/Router';
 import AuthController from './controllers/AuthController';
+import './controllers/MessagesController';
 
 enum Routes {
   Index = '/',
@@ -54,6 +57,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(Link);
   registerComponent(ButtonClose);
   registerComponent(FormUpload);
+  registerComponent(ChatsList);
+  registerComponent(ModalOpenLink);
 
   // const loginPage = new LoginPage();
   // const registrationPage = new RegistrationPage();

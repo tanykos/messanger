@@ -13,7 +13,7 @@ class AuthController {
       await this.fetchUser();
 
       store.set('user.error', undefined);
-      Router.go('/settings');
+      Router.go('/messenger');
     } catch (e: any) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -28,7 +28,7 @@ class AuthController {
       await this.fetchUser();
 
       store.set('user.error', undefined);
-      Router.go('/settings');
+      Router.go('/messenger');
     } catch (e: any) {
       store.set('user.error', e);
 

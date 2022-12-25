@@ -56,5 +56,13 @@
       "type": "password",
       "required": true
     }
+  ],
+  "addChat": [
+    {
+      "name": "title",
+      "label": "Название чата",
+      "type": "text",
+      "required": true
+    }
   ]
 }

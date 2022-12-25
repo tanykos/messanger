@@ -28,21 +28,18 @@ class Form extends Block {
   render() {
     /* html */
     return `
-    <form id={{formId}} novalidate class="{{className}}">
-      <div class="form-center-content">
-        {{#each formInputs}}
-          {{{InputForm onFocus=onFocus inputData=this}}}
-        {{/each}}
-      </div>
+      <form id={{formId}} novalidate class="{{className}}">
+        <div class="form-center-content">
+          {{#each formInputs}}
+            {{{InputForm onFocus=onFocus inputData=this}}}
+          {{/each}}
+        </div>
 
-      <div class="form-center-actions">
-        {{{Button label=formData.buttonLabel}}}
-      </div>
+        <div class="form-center-actions">
+          {{{Button label=formData.buttonLabel}}}
+        </div>
 
-  </form>
-    
-        
-    </div>
+      </form>
     `;
   }
 }

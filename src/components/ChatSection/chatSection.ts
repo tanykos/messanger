@@ -1,22 +1,14 @@
 import Block from '../../utils/Block';
 
 interface ChatSectionProps {
-  chatsData: {
-    chatName: string,
-    chatCounter: string,
-    lastMessage: string,
-    date: string
-  };
+  chatsData: any;
   onClick?: () => void
 }
 
 class ChatSection extends Block {
   constructor({ chatsData, onClick }: ChatSectionProps) {
     super({
-      chatName: chatsData.chatName,
-      chatCounter: chatsData.chatCounter,
-      lastMessage: chatsData.lastMessage,
-      date: chatsData.date,
+      ...chatsData,
       events: {
         click: onClick,
       },
@@ -26,6 +18,7 @@ class ChatSection extends Block {
   static componentName = 'ChatSection';
 
   render() {
+    console.log('!!!!!!!!!!!!!', this.props);
     /* html */
     return `
     <section class="chat-section">
@@ -33,13 +26,13 @@ class ChatSection extends Block {
         <span class="chat-avatar"></span>
         <span class="chat-item">
           <div class="chat-item-row">
-            <span class="chat-item-bold">{{chatName}}</span>
+            <span class="chat-item-bold">{{title}}</span>
             <span class="chat-item-date">{{date}}</span>
           </div>
           <div class="chat-item-row">
             <span class="chat-item-message">{{lastMessage}}</span>
-            {{#if chatCounter}}
-              <span class="chat-counter">{{chatCounter}}</span>
+            {{#if unread_count}}
+              <span class="chat-counter">{{unread_count}}</span>
             {{/if}}
           </div>
         </span>

@@ -5,8 +5,6 @@ export function uploadImg(event: Event) {
   const inputFile = document.querySelector('.upload-file-input');
   const file = Object(inputFile)!.files[0];
 
-  console.log('file', file);
-
   if (file.size > 5 * 1024 * 1024) {
     // eslint-disable-next-line no-alert
     alert('Файл должен быть не более 5 МБ.');

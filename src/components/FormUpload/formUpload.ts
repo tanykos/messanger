@@ -27,27 +27,23 @@ class FormUpload extends Block {
   render() {
     /* html */
     return `
-    <form id={{formId}} novalidate class="{{className}}">
-      <div class="form-center-content">
-        <div class="upload-file-wrapper">
-          <label for="imgInput" class="upload-file-label">{{formData.inputLabel}}</label>
-          <input name="avatar" type="file" id="imgInput" accept="image/png, image/jpeg" class="upload-file-input">
+      <form id={{formId}} novalidate class="{{className}}">
+        <div class="form-center-content">
+          <div class="upload-file-wrapper">
+            <label for="imgInput" class="upload-file-label">{{formData.inputLabel}}</label>
+            <input name="avatar" type="file" id="imgInput" accept="image/png, image/jpeg" class="upload-file-input">
+          </div>
+
+          <div class="file-name">
+          </div>
+
         </div>
 
-        <div class="file-name">
-        text
+        <div class="form-center-actions">
+          {{{Button label=formData.buttonLabel}}}
         </div>
 
-      </div>
-
-      <div class="form-center-actions">
-        {{{Button label=formData.buttonLabel}}}
-      </div>
-
-  </form>
-    
-        
-    </div>
+      </form>
     `;
   }
 }

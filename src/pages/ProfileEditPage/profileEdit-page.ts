@@ -2,9 +2,8 @@ import Block from '../../utils/Block';
 import profileData from '../../data/profileData.json';
 import modalData from '../../data/modalData.json';
 import validateForm from '../../utils/validateForm';
-import { withStore, withUser } from '../../utils/Store';
+import { withStore } from '../../utils/Store';
 import UserController from '../../controllers/UserController';
-import AuthController from '../../controllers/AuthController';
 
 class ProfileEditBase extends Block {
   constructor(props: any) {
