@@ -1,3 +1,4 @@
+import ChatsController from '../../controllers/ChatsController';
 import Block from '../../utils/Block';
 
 interface ChatSectionProps {
@@ -10,19 +11,25 @@ class ChatSection extends Block {
     super({
       ...chatsData,
       events: {
-        click: onClick,
+        click: (e : Event) => this.onClick(e),
       },
     });
   }
 
   static componentName = 'ChatSection';
 
+  onClick(e: Event) {
+    e.preventDefault();
+    console.log('Chat is clicked', this.props.id);
+    ChatsController.selectChat(this.props.id);
+  }
+
   render() {
-    console.log('!!!!!!!!!!!!!', this.props);
+    console.log('!!!!!!!!!!!!!', this.props.id);
     /* html */
     return `
     <section class="chat-section">
-      <a class="chat-link">
+      <a class="chat-link" id=${this.props.id}>
         <span class="chat-avatar"></span>
         <span class="chat-item">
           <div class="chat-item-row">
@@ -30,7 +37,7 @@ class ChatSection extends Block {
             <span class="chat-item-date">{{date}}</span>
           </div>
           <div class="chat-item-row">
-            <span class="chat-item-message">{{lastMessage}}</span>
+            <span class="chat-item-message">{{last_message}}</span>
             {{#if unread_count}}
               <span class="chat-counter">{{unread_count}}</span>
             {{/if}}

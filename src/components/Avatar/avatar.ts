@@ -29,7 +29,7 @@ class Avatar extends Block {
     /* html */
     return `
     <div class="avatar-wrapper avatar-hover">
-      <img class="profile-pic" src=${src} alt="Avatar"/>
+      <img class="profile-pic" src=${src} alt=""/>
       <div class="upload-button js-modal-btn">
         <span class="inner-text">
           Поменять <br/> аватар

@@ -13,5 +13,17 @@
       "title": "Введите название чата",
       "buttonLabel": "Создать",
       "isTextInp": true
+    },
+  "addChatUser": 
+    {
+      "title": "Добавить пользователя",
+      "buttonLabel": "Добавить",
+      "isTextInp": true
+    },
+  "deleteChatUser": 
+    {
+      "title": "Удалить пользователя",
+      "buttonLabel": "Удалить",
+      "isTextInp": true
     }
 }

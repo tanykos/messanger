@@ -16,21 +16,18 @@ class ChatsListBase extends Block {
       chats: props.chats,
       modalData: modalData.addChat,
       formInputs: fieldsData.addChat,
-      events: {
-        click: (e : Event) => this.onClick(e),
-      },
     });
   }
 
   static componentName = 'ChatsList';
 
-  onClick(e: Event) {
-    console.log('Chat is clicked');
-  }
+  // onClick(e: Event) {
+  //   console.log('Chat is clicked');
+  //   console.log('e.target', e.target);
+  //   // ChatsController.selectChat(data.id);
+  // }
 
   render() {
-    // ChatsController.fetchChats();
-    console.log('chatsList', this.props.chats);
     /* html */
     return `
       <div class="sidebar-chat">

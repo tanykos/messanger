@@ -1,8 +1,29 @@
+.dropdown-wrap {
+  position: relative;
+}
+
 .tooltip {
   display: none;
-  padding: 5px;
-  border: 1px solid black;
+  padding: 10px;
+  border: 1px solid $border-gray;
+  border-radius: 6px;
+  background: $bg-white;
+  box-shadow: 0 0 6px rgb(0 0 0 / 14%);
   position: absolute;
+  top: 37px;
+  right: 0;
+  z-index: 1;
+  width: 210px;
+
+  & > div {
+    padding: 10px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.5s;
+
+    &:hover {
+      border-color: $border-gray;
+    }
+  }
 }
 
 .tooltip.tooltip-active {

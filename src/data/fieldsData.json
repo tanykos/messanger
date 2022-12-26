@@ -64,5 +64,13 @@
       "type": "text",
       "required": true
     }
+  ],
+  "сhatUserAdd": [
+    {
+      "name": "users",
+      "label": "ID пользователя",
+      "type": "text",
+      "required": true
+    }
   ]
 }

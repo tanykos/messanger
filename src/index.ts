@@ -24,7 +24,10 @@ import Link from './components/Link';
 import ButtonClose from './components/ButtonClose';
 import FormUpload from './components/FormUpload';
 import ChatsList from './components/ChatsList';
+import Messenger from './components/Messenger';
 import ModalOpenLink from './components/ModalOpenLink';
+import ModalChats from './components/ModalChats';
+import DropdownBtn from './components/DropdownBtn';
 import registerComponent from './utils/registerComponent';
 
 import Router from './utils/Router';
@@ -59,6 +62,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(FormUpload);
   registerComponent(ChatsList);
   registerComponent(ModalOpenLink);
+  registerComponent(ModalChats);
+  registerComponent(Messenger);
+  registerComponent(DropdownBtn);
 
   // const loginPage = new LoginPage();
   // const registrationPage = new RegistrationPage();

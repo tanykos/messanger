@@ -92,3 +92,16 @@ export function closeModal(event: Event, id: string):void {
     modal!.style.display = 'none';
   }
 }
+
+export function toggleClass(event: Event, id: string):void {
+  event.preventDefault();
+  const tooltip = document.getElementById(id);
+
+  if (tooltip) {
+    if (tooltip.classList.contains('tooltip-active')) {
+      tooltip.classList.remove('tooltip-active');
+    } else {
+      tooltip.classList.add('tooltip-active');
+    }
+  }
+}

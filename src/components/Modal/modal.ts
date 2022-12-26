@@ -67,7 +67,7 @@ class Modal extends Block {
   }
 
   render() {
-    console.log('this.props.modalData', this.props.modalData);
+    console.log('this.props.modalData', this.props);
     /* html */
     return `
     <div id="{{modalId}}" class="modal">
