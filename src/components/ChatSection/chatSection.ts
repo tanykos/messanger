@@ -25,7 +25,6 @@ class ChatSection extends Block {
   }
 
   render() {
-    console.log('!!!!!!!!!!!!!', this.props.id);
     /* html */
     return `
     <section class="chat-section">

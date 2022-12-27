@@ -40,7 +40,6 @@ export default class AuthAPI extends BaseAPI {
   }
 
   read(): Promise<User> {
-    console.log('data in class AuthAPI - read');
     return this.http.get('/user');
   }
 

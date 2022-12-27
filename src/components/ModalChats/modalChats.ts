@@ -8,6 +8,7 @@ interface ModalChatsProps {
   chatId: number;
   modalData: Record<string, string>;
   formInputs: string;
+  isDelete?: boolean;
 }
 
 class ModalChats extends Block {
@@ -16,6 +17,7 @@ class ModalChats extends Block {
     chatId,
     modalData,
     formInputs,
+    isDelete,
   }: ModalChatsProps) {
     super({
       modalId,
@@ -23,6 +25,7 @@ class ModalChats extends Block {
       modalData,
       formInputs,
       onAddUser: (e : Event) => this.onAddUser(e),
+      isDelete,
       // onSubmit: (e : Event) => this.onAddChat(e),
     });
   }
@@ -33,8 +36,14 @@ class ModalChats extends Block {
     e.stopPropagation();
 
     const value = validateForm(e);
+
     if (value) {
-      ChatsController.addUserToChat(this.props.chatId, value.users);
+      if (this.props.isDelete) {
+        ChatsController.deleteUserToChat(this.props.chatId, value.usersDelete);
+      } else {
+        ChatsController.addUserToChat(this.props.chatId, value.users);
+      }
+
       closeModal(e, this.props.modalId);
       const form = e.target as HTMLFormElement;
       form.reset();

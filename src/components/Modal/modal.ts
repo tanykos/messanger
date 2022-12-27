@@ -32,8 +32,6 @@ class Modal extends Block {
 
   static componentName = 'Modal';
 
-  // onSubmit = this.props.modalData.isTextInp ? this.onAddChat : this.onSubmitImg;
-
   onSubmitImg(e : Event) {
     e.stopPropagation();
 
@@ -67,7 +65,6 @@ class Modal extends Block {
   }
 
   render() {
-    console.log('this.props.modalData', this.props);
     /* html */
     return `
     <div id="{{modalId}}" class="modal">

@@ -72,5 +72,13 @@
       "type": "text",
       "required": true
     }
+  ],
+  "сhatUserDelete": [
+    {
+      "name": "usersDelete",
+      "label": "ID пользователя",
+      "type": "text",
+      "required": true
+    }
   ]
 }

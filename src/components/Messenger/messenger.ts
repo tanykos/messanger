@@ -19,7 +19,8 @@ class MessengerBase extends Block {
       ...props,
       modalDataAdd: modalData.addChatUser,
       modalDataDelete: modalData.deleteChatUser,
-      formInputs: fieldsData.сhatUserAdd,
+      formInputsAdd: fieldsData.сhatUserAdd,
+      formInputsDelete: fieldsData.сhatUserDelete,
       onClick: (e : Event) => this.onClick(e),
       events: {
         // click: (e: Event) => toggleClass(e, 'dropdown'),
@@ -61,8 +62,8 @@ class MessengerBase extends Block {
               </div>
             </header>
 
-            {{{ModalChats modalId="addChatUser" modalData=modalDataAdd formInputs=formInputs chatId=selectedChat}}}
-            {{{ModalChats modalId="deleteChatUser" modalData=modalDataDelete formInputs=formInputs chatId=selectedChat}}}
+            {{{ModalChats modalId="addChatUser" modalData=modalDataAdd formInputs=formInputsAdd chatId=selectedChat}}}
+            {{{ModalChats modalId="deleteChatUser" modalData=modalDataDelete formInputs=formInputsDelete chatId=selectedChat isDelete=true}}}
 
             <div class="content-wrap">
               <div class="content-scroll">

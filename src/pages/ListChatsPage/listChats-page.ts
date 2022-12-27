@@ -15,8 +15,6 @@ class ListChatsPage extends Block {
   }
 
   render() {
-    // ChatsController.fetchChats();
-    console.log('Store in list', store);
     /* html */
     return `
     <main class="layout-col-2 layout-footer-stick">
