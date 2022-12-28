@@ -37,8 +37,7 @@ function validateForm(event: Event) {
 
   if (Object.keys(res).length === 0) {
     console.log('All inputs are empty.');
-  } else {
-    console.log(res);
+    return false;
   }
 
   return isFormValid ? res : false;

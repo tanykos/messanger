@@ -21,7 +21,6 @@ class MessengerBase extends Block {
       modalDataDelete: modalData.deleteChatUser,
       formInputsAdd: fieldsData.сhatUserAdd,
       formInputsDelete: fieldsData.сhatUserDelete,
-      onClick: (e : Event) => this.onClick(e),
       events: {
         // click: (e: Event) => toggleClass(e, 'dropdown'),
       },
@@ -30,14 +29,10 @@ class MessengerBase extends Block {
 
   static componentName = 'Messenger';
 
-  onClick(e: Event) {
-    console.log('Chat is clicked: ', e);
-    // toggleClass(e, 'dropdown');
-  }
-
   render() {
-    // ChatsController.fetchChats();
+    console.log('MESSENGER', this.props);
     const { selectedChat } = this.props;
+    // const { messages } = this.props;
     const activeChatTitle = selectedChat ? this.props.chats.find((x: any) => x.id === selectedChat).title : '';
     /* html */
     return `
@@ -66,15 +61,17 @@ class MessengerBase extends Block {
             {{{ModalChats modalId="deleteChatUser" modalData=modalDataDelete formInputs=formInputsDelete chatId=selectedChat isDelete=true}}}
 
             <div class="content-wrap">
-              <div class="content-scroll">
-                {{#each chatDetails}}
-                  {{{ChatDetails chatDetails=this}}}
-                {{/each}}                
+              <div class="content-scroll scroll-reverse">
+                <section class="chat-detail">
+                  {{#each messages}}
+                    {{{ChatMessage message=this userId=../userId}}}
+                  {{/each}}            
+                </section>
               </div>
             </div>
           
             <footer>
-              {{{TextareaForm onSubmit=onSubmit}}}
+              {{{TextareaForm selectedChat=selectedChat}}}
             </footer>
           </div>
         </div>

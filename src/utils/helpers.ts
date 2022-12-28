@@ -105,3 +105,31 @@ export function toggleClass(event: Event, id: string):void {
     }
   }
 }
+
+export function addClass(id: string):void {
+  const prevItem = document.getElementsByClassName('active-section')[0];
+  const item = document.getElementById(id);
+
+  if (prevItem) {
+    prevItem.classList.remove('active-section');
+  }
+  item!.classList.add('active-section');
+}
+
+type TDate = {
+  day: string;
+  time: string;
+};
+export function parsDate(str: string): TDate {
+  const strPars = Date.parse(str);
+  const date = new Date(strPars);
+
+  const day = date.toLocaleDateString('en-GB');
+  const time = date.toLocaleTimeString('en-GB');
+
+  const res : TDate = {
+    day,
+    time,
+  };
+  return res;
+}

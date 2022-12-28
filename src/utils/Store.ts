@@ -19,6 +19,10 @@ export class Store extends EventBus {
   public getState() {
     return this.state;
   }
+
+  // public clear() {
+  //   this.state = {};
+  // }
 }
 
 const store = new Store();
@@ -35,7 +39,7 @@ export function withStore(mapStateToProps: (state: any) => any) {
 
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
-
+          console.log('STORE1 stateProps', stateProps);
           // check
           if (!isEqual(previousState, stateProps)) {
             console.log('in store!');
@@ -44,7 +48,7 @@ export function withStore(mapStateToProps: (state: any) => any) {
           }
 
           previousState = { ...stateProps };
-          console.log('stateProps', stateProps);
+          console.log('STORE2 stateProps', stateProps);
 
           // this.setProps({ ...stateProps });
         });

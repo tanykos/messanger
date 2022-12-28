@@ -1,15 +1,20 @@
+import ChatsController from '../../controllers/ChatsController';
+import MessagesController from '../../controllers/MessagesController';
 import Block from '../../utils/Block';
 import validateField from '../../utils/validateField';
+import validateForm from '../../utils/validateForm';
 
 interface TextareaFormProps {
+  selectedChat: number;
   onSubmit?: () => void;
 }
 
 class TextareaForm extends Block {
-  constructor({ onSubmit }: TextareaFormProps) {
+  constructor(props: TextareaFormProps) {
     super({
+      ...props,
       events: {
-        submit: onSubmit,
+        submit: (e : Event) => this.onSubmit(e),
         focusin: (e : Event) => validateField(e.target as Element, 'message'),
         focusout: (e : Event) => validateField(e.target as Element, 'message'),
       },
@@ -18,16 +23,21 @@ class TextareaForm extends Block {
 
   static componentName = 'TextareaForm';
 
+  onSubmit(e: Event) {
+    e.stopPropagation();
+
+    const data = validateForm(e);
+    if (data) {
+      console.log('TEXT', this.props.selectedChat, data);
+      MessagesController.sendMessage(this.props.selectedChat!, data.message);
+    }
+  }
+
   render() {
     /* html */
     return `
     <form id="messageForm" novalidate>
       <div class="row-items-3">
-        <span class="item-1">
-          <button role="button" type="button" class="icon-btn">
-            <i class="fa-solid fa-paperclip"></i>
-          </button>
-        </span>
         <span class="item-2">
           <textarea name="message"
             class="chat-textarea" 
@@ -48,3 +58,9 @@ class TextareaForm extends Block {
 }
 
 export default TextareaForm;
+
+// <span class="item-1">
+//           <button role="button" type="button" class="icon-btn">
+//             <i class="fa-solid fa-paperclip"></i>
+//           </button>
+//         </span>

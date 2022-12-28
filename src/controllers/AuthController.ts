@@ -2,6 +2,7 @@ import AuthAPI from '../api/AuthAPI';
 import { SigninData, SignupData } from '../types/types';
 import store from '../utils/Store';
 import Router from '../utils/Router';
+import MessagesController from './MessagesController';
 
 class AuthController {
   constructor(private api: AuthAPI) {}
@@ -45,6 +46,8 @@ class AuthController {
 
   async logout() {
     try {
+      MessagesController.closeAll();
+
       await this.api.logout();
 
       Router.go('/');

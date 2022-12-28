@@ -67,6 +67,10 @@
         background-color: $bg-hover;
         transition: all 0.3s;
       }
+
+      &.active-section {
+        background-color: $bg-active;
+      }
     }
 
     .chat-avatar {
@@ -98,6 +102,12 @@
         .chat-item-message,
         .chat-item-date {
           color: $gray;
+        }
+
+        .chat-item-message {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
 
         .chat-counter {
@@ -152,6 +162,10 @@
     padding-bottom: 16px;
     border-top: 1px solid $border-gray;
     border-bottom: 1px solid $border-gray;
+
+    &.scroll-reverse {
+      flex-direction: column-reverse !important;
+    }
   }
 
   footer .row-items-3 {
@@ -179,7 +193,7 @@
 
   .message {
     width: fit-content;
-    min-width: 50px;
+    min-width: 100px;
     max-width: 60%;
     background-color: $bg-gray-2;
     border-radius: 5px;
@@ -197,9 +211,10 @@
     }
 
     .message-time {
-      text-align: end;
       font-size: 9px;
       color: $gray;
+      display: flex;
+      justify-content: space-between;
     }
   }
 }
@@ -223,4 +238,10 @@
   border-radius: 30px;
   outline: none;
   resize: none;
+}
+
+.info-text {
+  text-align: center;
+  font-style: italic;
+  color: $gray;
 }

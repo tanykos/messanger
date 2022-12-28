@@ -1,31 +1,49 @@
 import Block from '../../utils/Block';
+import { parsDate } from '../../utils/helpers';
 
 interface ChatMessageProps {
-  messages: {
-    messageText: string,
-    messageTime: string,
-    isOwner: boolean
+  userId: number,
+  message: {
+    content: string,
+    time: string,
+    user_id: number,
+    type: string,
   }
 }
 
 class ChatMessage extends Block {
-  constructor({ messages }: ChatMessageProps) {
+  constructor({ userId, message }: ChatMessageProps) {
     super({
-      messageText: messages.messageText,
-      messageTime: messages.messageTime,
-      isOwner: messages.isOwner,
+      userId,
+      messageText: message.content,
+      messageTime: message.time,
+      messageAuthor: message.user_id,
+      type: message.type,
     });
   }
 
   static componentName = 'ChatMessage';
 
+  // date = parsDate(this.props.messageTime).day;
+
   render() {
+    const date = parsDate(this.props.messageTime).day;
+    const { time } = parsDate(this.props.messageTime);
+    const isInfo = (this.props.type === 'user connected');
+    const isMine = (this.props.messageAuthor === this.props.userId);
     /* html */
     return `
-      <div class="message {{#if isOwner}}message-user{{/if}}" >
-        <p class="message-text">{{messageText}}</p>
-        <p class="message-time">{{messageTime}}</p>
-      </div>
+      {{#if ${isInfo} }}
+        <p class="info-text">{{messageText}} user connected</p>
+      {{else}}
+        <div class="message {{#if ${isMine}}}message-user{{/if}}" >
+          <p class="message-text">{{messageText}}</p>
+          <p class="message-time">
+            <span>${date}</span>
+            <span>${time}</span>
+          </p>
+        </div>
+        {{/if}}
     `;
   }
 }

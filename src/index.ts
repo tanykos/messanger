@@ -33,6 +33,7 @@ import registerComponent from './utils/registerComponent';
 import Router from './utils/Router';
 import AuthController from './controllers/AuthController';
 import './controllers/MessagesController';
+// import ChatsController from './controllers/ChatsController';
 
 enum Routes {
   Index = '/',

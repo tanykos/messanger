@@ -13,10 +13,11 @@ interface ChatsListProps {
 class ChatsListBase extends Block {
   constructor(props: ChatsListProps) {
     super({
-      chats: props.chats,
+      ...props,
       modalData: modalData.addChat,
       formInputs: fieldsData.addChat,
     });
+    console.log('0000000000000000000', props, store.getState());
   }
 
   static componentName = 'ChatsList';
