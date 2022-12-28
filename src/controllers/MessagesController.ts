@@ -1,6 +1,7 @@
 import WSTransport, { WSTransportEvents } from '../utils/WSTransport';
 import store from '../utils/Store';
 import { Message } from '../types/types';
+import ChatsController from './ChatsController';
 
 class MessagesController {
   private sockets: Map<number, WSTransport> = new Map();
@@ -22,7 +23,7 @@ class MessagesController {
     this.fetchOldMessages(id);
   }
 
-  sendMessage(id: number, message: string) {
+  async sendMessage(id: number, message: string) {
     const socket = this.sockets.get(id);
 
     if (!socket) {
@@ -63,6 +64,7 @@ class MessagesController {
     messagesToAdd = [...currentMessages, ...messagesToAdd];
 
     store.set(`messages.${id}`, messagesToAdd);
+    ChatsController.fetchChats();
   }
 
   private onClose(id: number) {
@@ -75,10 +77,6 @@ class MessagesController {
   }
 }
 
-const controller = new MessagesController();
+const messagesController = new MessagesController();
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-window.messagesController = controller;
-
-export default controller;
+export default messagesController;

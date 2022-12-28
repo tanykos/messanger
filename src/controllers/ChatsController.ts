@@ -1,13 +1,9 @@
-import API, { ChatsAPI } from '../api/ChatsAPI';
+import { ChatsAPI } from '../api/ChatsAPI';
 import store from '../utils/Store';
 import MessagesController from './MessagesController';
 
 class ChatsController {
-  private readonly api: ChatsAPI;
-
-  constructor() {
-    this.api = API;
-  }
+  constructor(private api: ChatsAPI) {}
 
   async create(title: string) {
     await this.api.create(title);
@@ -27,12 +23,14 @@ class ChatsController {
     store.set('chats', chats);
   }
 
-  addUserToChat(id: number, userId: number) {
+  async addUserToChat(id: number, userId: number) {
     this.api.addUsers(id, [userId]);
+    await this.fetchChats();
   }
 
-  deleteUserToChat(id: number, userId: number) {
+  async deleteUserToChat(id: number, userId: number) {
     this.api.deleteUsers(id, [userId]);
+    await this.fetchChats();
   }
 
   async delete(id: number) {
@@ -50,10 +48,6 @@ class ChatsController {
   }
 }
 
-const controller = new ChatsController();
+const chatsController = new ChatsController(new ChatsAPI());
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-window.chatsController = controller;
-
-export default controller;
+export default chatsController;

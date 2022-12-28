@@ -3,6 +3,7 @@ import chatsData from '../../data/chatsData.json';
 import validateForm from '../../utils/validateForm';
 import store from '../../utils/Store';
 import ChatsController from '../../controllers/ChatsController';
+import AuthController from '../../controllers/AuthController';
 
 class ListChatsPage extends Block {
   constructor() {
@@ -11,6 +12,7 @@ class ListChatsPage extends Block {
       onSubmit: (e : Event) => validateForm(e),
     });
 
+    AuthController.fetchUser();
     ChatsController.fetchChats();
   }
 

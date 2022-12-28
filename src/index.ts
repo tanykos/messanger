@@ -1,4 +1,3 @@
-import renderDOM from './utils/renderDOM';
 import LoginPage from './pages/Login';
 import RegistrationPage from './pages/RegistrationPage';
 import ListChatsPage from './pages/ListChatsPage';
@@ -42,6 +41,8 @@ enum Routes {
   Profile = '/profile',
   Password = '/password',
   Chat = '/messenger',
+  Error404 = '/error404',
+  Error500 = '/error500',
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -67,31 +68,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(Messenger);
   registerComponent(DropdownBtn);
 
-  // const loginPage = new LoginPage();
-  // const registrationPage = new RegistrationPage();
-  // const listChatsPage = new ListChatsPage();
-  // const profilePage = new ProfilePage();
-  // const profileEditPage = new ProfileEditPage();
-  // const profilePasswordPage = new ProfilePasswordPage();
-  // const error404Page = new Error404Page();
-  // const error500Page = new Error500Page();
-
   Router
     .use(Routes.Index, LoginPage)
     .use(Routes.Register, RegistrationPage)
     .use(Routes.Settings, ProfilePage)
     .use(Routes.Profile, ProfileEditPage)
     .use(Routes.Password, ProfilePasswordPage)
-    .use(Routes.Chat, ListChatsPage);
+    .use(Routes.Chat, ListChatsPage)
+    .use(Routes.Error404, Error404Page)
+    .use(Routes.Error500, Error500Page);
 
   let isProtectedRoute = true;
 
+  // eslint-disable-next-line default-case
   switch (window.location.pathname) {
     case Routes.Index:
     case Routes.Register:
       isProtectedRoute = false;
       break;
-    default: break;
   }
 
   try {
@@ -99,7 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     Router.start();
 
     if (!isProtectedRoute) {
-      Router.go(Routes.Settings);
+      Router.go(Routes.Chat);
     }
   } catch (e) {
     Router.start();
@@ -108,62 +102,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       Router.go(Routes.Index);
     }
   }
-
-  // custom routing sprint-2
-  // renderDOM('#app', loginPage);
-
-  // const path = document.location.pathname;
-
-  // switch (path) {
-  //   case ('/pages/registration-page'):
-  //     renderDOM('#app', registrationPage);
-  //     break;
-  //   case ('/pages/listChats-page'):
-  //     renderDOM('#app', listChatsPage);
-  //     break;
-  //   case ('/pages/profile-page'):
-  //     renderDOM('#app', profilePage);
-  //     break;
-  //   case ('/pages/profileEdit-page'):
-  //     renderDOM('#app', profileEditPage);
-  //     break;
-  //   case ('/pages/profilePassword-page'):
-  //     renderDOM('#app', profilePasswordPage);
-  //     break;
-  //   case ('/pages/error404-page'):
-  //     renderDOM('#app', error404Page);
-  //     break;
-  //   case ('/pages/error500-page'):
-  //     renderDOM('#app', error500Page);
-  //     break;
-  //   default:
-  //     renderDOM('#app', loginPage);
-  // }
-
-  // Modal
-  // const modal = document.getElementById('modal');
-  // const span: HTMLElement = document.getElementsByClassName('close')[0] as HTMLElement;
-  // const modalButtons = Array.from(document.querySelectorAll('.js-modal-btn'));
-
-  // if (modalButtons) {
-  //   modalButtons.forEach((item) => {
-  //     item.addEventListener('click', (event) => {
-  //       event.preventDefault();
-  //     });
-  //   });
-
-  //   modalButtons.addEventListener('click', () => {
-  //     modal!.style.display = 'block';
-  //   });
-  // Close the modal
-  //   span.onclick = () => {
-  //     modal!.style.display = 'none';
-  //   };
-
-  //   window.onclick = (event) => {
-  //     if (event.target === modal) {
-  //       modal!.style.display = 'none';
-  //     }
-  //   };
-  // }
 });
