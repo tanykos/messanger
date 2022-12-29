@@ -6,7 +6,7 @@ interface DropdownBtnProps {
   linkTitle: string;
 }
 
-class DropdownBtn extends Block {
+class DropdownBtn extends Block<DropdownBtnProps> {
   constructor({
     modalId,
     linkTitle,

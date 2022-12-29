@@ -29,5 +29,3 @@ export default class AuthAPI extends BaseAPI {
 
   delete = undefined;
 }
-
-// export default new AuthAPI();

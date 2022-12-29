@@ -13,7 +13,6 @@ class LoginPage extends Block {
     });
   }
 
-  // onSubmit: (e : Event) => validateForm(e),
   onSubmit(e : Event) {
     const data = validateForm(e);
     if (data) { AuthController.signin(data); }

@@ -6,7 +6,7 @@ interface AvatarProps {
   avatarPath: string;
 }
 
-class Avatar extends Block {
+class Avatar extends Block<AvatarProps> {
   constructor({
     modalId,
     avatarPath,

@@ -1,7 +1,6 @@
 export function uploadImg(event: Event) {
   event.preventDefault();
 
-  // const form = document.querySelector('form');
   const inputFile = document.querySelector('.upload-file-input');
   const file = Object(inputFile)!.files[0];
 

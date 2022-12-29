@@ -50,6 +50,6 @@ class BaseLink extends Block<LinkProps> {
     `;
   }
 }
-// {iconLeft && <Icon theme={theme} xml={iconLeft} />}
+
 const Link = withRouter(BaseLink);
 export default Link;

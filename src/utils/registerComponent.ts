@@ -17,5 +17,3 @@ export default function registerComponent(Component: typeof Block) {
     return `<div data-id="id-${component.id}"></div>`;
   });
 }
-
-// export default registerComponent;

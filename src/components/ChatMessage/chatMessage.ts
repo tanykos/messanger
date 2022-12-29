@@ -24,8 +24,6 @@ class ChatMessage extends Block {
 
   static componentName = 'ChatMessage';
 
-  // date = parsDate(this.props.messageTime).day;
-
   render() {
     const date = parsDate(this.props.messageTime).day;
     const { time } = parsDate(this.props.messageTime);

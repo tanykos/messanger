@@ -62,6 +62,7 @@ export interface Message {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface State {
   user: User;
   chats: ChatInfo[];

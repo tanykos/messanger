@@ -5,7 +5,7 @@ interface ButtonCloseProps {
   modalId: string;
 }
 
-class ButtonClose extends Block {
+class ButtonClose extends Block<ButtonCloseProps> {
   constructor({ modalId }: ButtonCloseProps) {
     super({
       modalId,

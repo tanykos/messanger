@@ -8,7 +8,7 @@ interface FormProps {
   onSubmit?: () => void;
 }
 
-class Form extends Block {
+class Form extends Block<FormProps> {
   constructor({
     formInputs, formData, formId, onSubmit, className,
   }: FormProps) {
@@ -45,5 +45,3 @@ class Form extends Block {
 }
 
 export default Form;
-
-// <a href="{{formData.linkHref}}" class="action-link">{{formData.linkTitle}}</a>

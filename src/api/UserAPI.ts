@@ -1,16 +1,5 @@
 import BaseAPI from './BaseAPI';
-import { User, UserPassword, Avatar } from '../types/types';
-
-// export interface User {
-//   id: number;
-//   first_name: string;
-//   second_name: string;
-//   login: string;
-//   email: string;
-//   password: string;
-//   phone: string;
-//   avatar: string;
-// }
+import { User, UserPassword } from '../types/types';
 
 // Sending data to server and get answer
 export default class UserAPI extends BaseAPI {

@@ -173,9 +173,6 @@ class Block<P extends Record<string, any> = any> {
 
       set(target, prop, value) {
         const oldProps = { ...target };
-        // let newTarget = target[prop as keyof Props<P>];
-        // newTarget = value;
-        // self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newTarget);
         const newTarget = target;
         newTarget[prop as keyof Props<P>] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newTarget);
