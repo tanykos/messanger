@@ -62,9 +62,11 @@ export function isEqual(lhs: Indexed, rhs: Indexed) {
   for (const [key, value] of Object.entries(lhs)) {
     const rightValue = rhs[key];
     if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
-      if (!isEqual(value, rightValue)) {
-        return false;
+      if (isEqual(value, rightValue)) {
+        // eslint-disable-next-line no-continue
+        continue;
       }
+      return false;
     }
 
     if (value !== rightValue) {

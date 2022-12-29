@@ -45,9 +45,9 @@ class AuthController {
 
   async logout() {
     try {
-      MessagesController.closeAll();
-
       await this.api.logout();
+      MessagesController.closeAll();
+      store.clear();
 
       Router.go('/');
       store.set('user.error', undefined);
