@@ -1,6 +1,7 @@
 import WSTransport, { WSTransportEvents } from '../utils/WSTransport';
 import store from '../utils/Store';
 import { Message } from '../types/types';
+// eslint-disable-next-line import/no-cycle
 import ChatsController from './ChatsController';
 
 class MessagesController {

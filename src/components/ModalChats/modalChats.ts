@@ -26,7 +26,6 @@ class ModalChats extends Block {
       formInputs,
       onAddUser: (e : Event) => this.onAddUser(e),
       isDelete,
-      // onSubmit: (e : Event) => this.onAddChat(e),
     });
   }
 

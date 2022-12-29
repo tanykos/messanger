@@ -1,29 +1,5 @@
 import BaseAPI from './BaseAPI';
 import { SigninData, SignupData, User } from '../types/types';
-// export interface SigninData {
-//   login: string;
-//   password: string;
-// }
-
-// export interface SignupData {
-//   first_name: string;
-//   second_name: string;
-//   login: string;
-//   email: string;
-//   password: string;
-//   phone: string;
-// }
-
-// export interface User {
-//   id: number;
-//   first_name: string;
-//   second_name: string;
-//   login: string;
-//   email: string;
-//   password: string;
-//   phone: string;
-//   avatar: string;
-// }
 
 // Sending data to server and get answer
 export default class AuthAPI extends BaseAPI {

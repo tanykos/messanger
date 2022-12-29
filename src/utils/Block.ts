@@ -133,7 +133,6 @@ class Block<P extends Record<string, any> = any> {
       return;
     }
 
-    // Object.assign(this.props, merge(this.props, nextProps));
     Object.assign(this.props, nextProps);
   };
 

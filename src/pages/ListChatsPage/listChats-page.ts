@@ -1,6 +1,5 @@
 import Block from '../../utils/Block';
 import chatsData from '../../data/chatsData.json';
-import validateForm from '../../utils/validateForm';
 import ChatsController from '../../controllers/ChatsController';
 import AuthController from '../../controllers/AuthController';
 
@@ -8,7 +7,6 @@ class ListChatsPage extends Block {
   constructor() {
     super({
       chatDetails: chatsData.chatsList[0].chatDetails,
-      onSubmit: (e : Event) => validateForm(e),
     });
 
     AuthController.fetchUser();

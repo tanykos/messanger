@@ -1,21 +1,22 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-syntax */
 export type Indexed<T = any> = {
   [key in string]: T;
 };
 
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
   for (const p in rhs) {
-    if (!rhs.hasOwnProperty(p)) {
-      continue;
-    }
-
-    try {
-      if (rhs[p].constructor === Object) {
-        rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
-      } else {
+    // if (!rhs.hasOwnProperty(p)) {
+    if (Object.prototype.hasOwnProperty.call(rhs, p)) {
+      try {
+        if (rhs[p].constructor === Object) {
+          rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
+        } else {
+          lhs[p] = rhs[p];
+        }
+      } catch (e) {
         lhs[p] = rhs[p];
       }
-    } catch (e) {
-      lhs[p] = rhs[p];
     }
   }
 
@@ -61,10 +62,9 @@ export function isEqual(lhs: Indexed, rhs: Indexed) {
   for (const [key, value] of Object.entries(lhs)) {
     const rightValue = rhs[key];
     if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
-      if (isEqual(value, rightValue)) {
-        continue;
+      if (!isEqual(value, rightValue)) {
+        return false;
       }
-      return false;
     }
 
     if (value !== rightValue) {
