@@ -30,6 +30,7 @@ class Route {
   }
 
   leave() {
+    this.block?._componentWillUnmount();
     this.block = null;
   }
 

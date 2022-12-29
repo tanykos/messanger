@@ -2,8 +2,7 @@ import Block from '../../utils/Block';
 import { ChatInfo } from '../../types/types';
 import modalData from '../../data/modalData.json';
 import fieldsData from '../../data/fieldsData.json';
-import store, { withStore } from '../../utils/Store';
-import ChatsController from '../../controllers/ChatsController';
+import { withStore } from '../../utils/Store';
 
 interface ChatsListProps {
   chats: ChatInfo[];
@@ -17,16 +16,9 @@ class ChatsListBase extends Block {
       modalData: modalData.addChat,
       formInputs: fieldsData.addChat,
     });
-    console.log('0000000000000000000', props, store.getState());
   }
 
   static componentName = 'ChatsList';
-
-  // onClick(e: Event) {
-  //   console.log('Chat is clicked');
-  //   console.log('e.target', e.target);
-  //   // ChatsController.selectChat(data.id);
-  // }
 
   render() {
     /* html */

@@ -1,13 +1,13 @@
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
-import { merge } from './helpers';
 
 type BlockEvents<P = any> = {
   init: [];
   'flow:component-did-mount': [];
   'flow:component-did-update': [P, P];
   'flow:render': [];
+  'flow:component-will-unmount': [];
 };
 
 type Props<P extends Record<string, unknown> = any> = { events?: Record<string, () => void> } & P;
@@ -17,6 +17,7 @@ class Block<P extends Record<string, any> = any> {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CWU: 'flow:component-will-unmount',
     FLOW_RENDER: 'flow:render',
   } as const;
 
@@ -65,6 +66,7 @@ class Block<P extends Record<string, any> = any> {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -94,9 +96,29 @@ class Block<P extends Record<string, any> = any> {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
+  _componentWillUnmount() {
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        child.forEach((item) => {
+          item.dispatchComponentWillUnmount();
+        });
+      } else {
+        child.dispatchComponentWillUnmount();
+      }
+    });
+    this.componentWillUnmount();
+  }
+
+  protected componentWillUnmount() {
+
+  }
+
+  dispatchComponentWillUnmount() {
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU);
+  }
+
   _componentDidUpdate(oldProps: Props<P>, newProps: Props<P>) {
     if (this.componentDidUpdate(oldProps, newProps)) {
-      console.log('UPDATE', oldProps, newProps);
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }

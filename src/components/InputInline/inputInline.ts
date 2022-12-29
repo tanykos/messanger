@@ -31,7 +31,6 @@ class InputInline extends Block {
   render() {
     const inputName = this.props.inputsData.name;
     const inputValue = this.props.formData[inputName] || '';
-    // console.log('formData2: ', this.props.formData);
 
     /* html */
     return `

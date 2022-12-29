@@ -1,4 +1,3 @@
-import ChatsController from '../../controllers/ChatsController';
 import MessagesController from '../../controllers/MessagesController';
 import Block from '../../utils/Block';
 import validateField from '../../utils/validateField';
@@ -28,7 +27,6 @@ class TextareaForm extends Block {
 
     const data = validateForm(e);
     if (data) {
-      console.log('TEXT', this.props.selectedChat, data);
       MessagesController.sendMessage(this.props.selectedChat!, data.message);
     }
   }

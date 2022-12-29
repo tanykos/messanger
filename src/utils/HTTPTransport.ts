@@ -62,7 +62,7 @@ export default class HTTPTransport {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
 
-      xhr.onreadystatechange = (e) => {
+      xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {
             resolve(xhr.response);
@@ -72,9 +72,6 @@ export default class HTTPTransport {
         }
       };
 
-      // xhr.onabort = () => reject({ reason: 'abort' });
-      // xhr.onerror = () => reject({ reason: 'network error' });
-      // xhr.ontimeout = () => reject({ reason: 'timeout' });
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
@@ -82,7 +79,6 @@ export default class HTTPTransport {
       if (!(data instanceof FormData)) {
         xhr.setRequestHeader('Content-Type', 'application/json');
       }
-      // xhr.setRequestHeader('Content-Type', 'application/json');
 
       xhr.withCredentials = true;
       xhr.responseType = 'json';

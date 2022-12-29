@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import validateField from '../../utils/validateField';
+import { validateInput } from '../../utils/validateField';
 
 interface InputFormProps {
   inputData: {
@@ -18,8 +18,8 @@ class InputForm extends Block {
       required: inputData.required,
       type: inputData.type,
       events: {
-        focusin: (e : Event) => validateField(e.target as Element),
-        focusout: (e : Event) => validateField(e.target as Element),
+        focusin: validateInput,
+        focusout: validateInput,
       },
     });
   }

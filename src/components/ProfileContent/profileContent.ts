@@ -32,7 +32,6 @@ class ProfileContent extends Block {
   static componentName = 'ProfileContent';
 
   render() {
-    // console.log('formData-Content: ', this.props.formData);
     const src = this.props.formData.avatar ? `https://ya-praktikum.tech/api/v2/resources/${this.props.formData.avatar}` : '//:0';
 
     /* html */
@@ -76,7 +75,3 @@ class ProfileContent extends Block {
 }
 
 export default ProfileContent;
-
-// <a href="{{this.linkHref}}" class="{{this.link-class}}">{{this.link-title}}</a>
-
-// {{{Modal dataModal="profileAvatar"}}}

@@ -40,7 +40,6 @@ class AuthController {
 
   async fetchUser() {
     const user = await this.api.read();
-    console.log('USER: ', user);
     store.set('user', user);
   }
 

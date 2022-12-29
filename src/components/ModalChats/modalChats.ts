@@ -51,7 +51,6 @@ class ModalChats extends Block {
   }
 
   render() {
-    console.log('props modalChat', this.props);
     /* html */
     return `
     <div id="{{modalId}}" class="modal">

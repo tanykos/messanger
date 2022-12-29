@@ -15,7 +15,6 @@ import InputInline from './components/InputInline';
 import ErrorLayout from './components/ErrorLayout';
 import ChatSection from './components/ChatSection';
 import Popup from './components/Popup';
-import ChatDetails from './components/ChatDetails';
 import ChatMessage from './components/ChatMessage';
 import Form from './components/Form';
 import TextareaForm from './components/TextareaForm';
@@ -55,7 +54,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(ErrorLayout);
   registerComponent(ChatSection);
   registerComponent(Popup);
-  registerComponent(ChatDetails);
   registerComponent(ChatMessage);
   registerComponent(Form);
   registerComponent(TextareaForm);

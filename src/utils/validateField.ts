@@ -51,3 +51,8 @@ function validateField(target: Element, targetName?: string): boolean {
 }
 
 export default validateField;
+
+export const validateInput = (e : Event) => validateField(
+  e.target as HTMLInputElement,
+  (e.target as HTMLInputElement).name,
+);

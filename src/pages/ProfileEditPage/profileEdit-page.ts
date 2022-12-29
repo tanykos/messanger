@@ -26,7 +26,6 @@ class ProfileEditBase extends Block {
   }
 
   render() {
-    console.log('formData-Edit-page: ', this.props.formData);
     /* html */
     return `
     <main class="layout-col-2">
@@ -49,6 +48,5 @@ class ProfileEditBase extends Block {
   }
 }
 
-// const ProfileEditPage = withUser(ProfileEditBase);
 const ProfileEditPage = withStore((state) => ({ formData: { ...state.user } }))(ProfileEditBase);
 export default ProfileEditPage;

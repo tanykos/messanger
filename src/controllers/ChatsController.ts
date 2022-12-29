@@ -1,5 +1,6 @@
 import { ChatsAPI } from '../api/ChatsAPI';
 import store from '../utils/Store';
+// eslint-disable-next-line import/no-cycle
 import MessagesController from './MessagesController';
 
 class ChatsController {

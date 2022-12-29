@@ -12,7 +12,7 @@ export class Store extends EventBus {
 
   public set(keypath: string, data: unknown) {
     set(this.state, keypath, data);
-    console.log('NEW STATE: ', this.getState());
+
     this.emit(StoreEvents.Updated, this.getState());
   }
 
@@ -37,21 +37,21 @@ export function withStore(mapStateToProps: (state: any) => any) {
 
         super({ ...props, ...previousState });
 
-        store.on(StoreEvents.Updated, () => {
-          const stateProps = mapStateToProps(store.getState());
-          console.log('STORE1 stateProps', stateProps);
-          // check
-          if (!isEqual(previousState, stateProps)) {
-            console.log('in store!');
-            this.setProps({ ...stateProps });
-            console.log('completed update store!');
-          }
+        store.on(StoreEvents.Updated, this.storeEventHandler);
+      }
 
-          previousState = { ...stateProps };
-          console.log('STORE2 stateProps', stateProps);
+      private storeEventHandler = () => {
+        const stateProps = mapStateToProps(store.getState());
 
-          // this.setProps({ ...stateProps });
-        });
+        if (!isEqual(previousState, stateProps)) {
+          this.setProps({ ...stateProps });
+        }
+
+        previousState = { ...stateProps };
+      };
+
+      protected componentWillUnmount(): void {
+        store.off(StoreEvents.Updated, this.storeEventHandler);
       }
     };
   };

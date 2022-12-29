@@ -8,7 +8,7 @@ interface ChatSectionProps {
 }
 
 class ChatSection extends Block {
-  constructor({ chatsData, onClick }: ChatSectionProps) {
+  constructor({ chatsData }: ChatSectionProps) {
     super({
       ...chatsData,
       events: {
@@ -21,13 +21,11 @@ class ChatSection extends Block {
 
   onClick(e: Event) {
     e.preventDefault();
-    console.log('Chat is clicked', this.props.id);
     addClass(this.props.id);
     ChatsController.selectChat(this.props.id);
   }
 
   render() {
-    console.log('PROPS', this.props);
     /* html */
     return `
     <section class="chat-section">

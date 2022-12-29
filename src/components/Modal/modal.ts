@@ -26,7 +26,6 @@ class Modal extends Block {
       formInputs,
       onSubmitImg: (e : Event) => this.onSubmitImg(e),
       onAddChat: (e : Event) => this.onAddChat(e),
-      // onSubmit: (e : Event) => this.onAddChat(e),
     });
   }
 
@@ -37,7 +36,7 @@ class Modal extends Block {
 
     const data = formDataImg(e);
     if (data) {
-      UserController.updateAvatar(data, this.props.userId)
+      UserController.updateAvatar(data)
         .then(
           () => { closeModal(e, this.props.modalId); },
           // eslint-disable-next-line no-console

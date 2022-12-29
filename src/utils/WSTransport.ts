@@ -35,7 +35,7 @@ export default class WSTransport extends EventBus {
       this.on(WSTransportEvents.Connected, () => {
         resolve();
       });
-      // myAdd
+
       this.off(WSTransportEvents.Close, () => {
         reject();
       });

@@ -13,7 +13,6 @@ class ProfilePageBase extends Block {
   }
 
   render() {
-    // console.log('formData0: ', this.props.formData);
     /* html */
     return `
     <main class="layout-col-2">

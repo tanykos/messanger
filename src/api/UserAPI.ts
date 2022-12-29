@@ -35,7 +35,6 @@ export default class UserAPI extends BaseAPI {
   }
 
   updateAvatar(data: FormData) {
-    console.log('updateAvarar request: ', data);
     return this.http.put('/profile/avatar', data);
   }
 

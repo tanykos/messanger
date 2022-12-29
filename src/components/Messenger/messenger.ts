@@ -2,9 +2,7 @@ import Block from '../../utils/Block';
 import { ChatInfo, Message as MessageInfo } from '../../types/types';
 import modalData from '../../data/modalData.json';
 import fieldsData from '../../data/fieldsData.json';
-import store, { withStore } from '../../utils/Store';
-import ChatsController from '../../controllers/ChatsController';
-import { openModal, toggleClass } from '../../utils/helpers';
+import { withStore } from '../../utils/Store';
 
 interface MessengerProps {
   selectedChat: number | undefined;
@@ -21,19 +19,15 @@ class MessengerBase extends Block {
       modalDataDelete: modalData.deleteChatUser,
       formInputsAdd: fieldsData.сhatUserAdd,
       formInputsDelete: fieldsData.сhatUserDelete,
-      events: {
-        // click: (e: Event) => toggleClass(e, 'dropdown'),
-      },
     });
   }
 
   static componentName = 'Messenger';
 
   render() {
-    console.log('MESSENGER', this.props);
     const { selectedChat } = this.props;
-    // const { messages } = this.props;
     const activeChatTitle = selectedChat ? this.props.chats.find((x: any) => x.id === selectedChat).title : '';
+
     /* html */
     return `
     {{#if ${selectedChat}}}
