@@ -45,6 +45,11 @@
   flex-direction: column;
 }
 
+%flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 h1 {
   font-size: 20px;
 }

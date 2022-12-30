@@ -65,6 +65,14 @@
       "required": true
     }
   ],
+  "deleteChat": [
+    {
+      "name": "chatId",
+      "label": "Id чата",
+      "type": "text",
+      "required": true
+    }
+  ],
   "сhatUserAdd": [
     {
       "name": "users",

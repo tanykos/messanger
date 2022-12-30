@@ -4,18 +4,15 @@ import { openModal } from '../../utils/helpers';
 interface ModalOpenLinkProps {
   modalId: string;
   linkTitle: string;
+  className?: string;
 }
 
 class ModalOpenLink extends Block {
-  constructor({
-    modalId,
-    linkTitle,
-  }: ModalOpenLinkProps) {
+  constructor(props: ModalOpenLinkProps) {
     super({
-      modalId,
-      linkTitle,
+      ...props,
       events: {
-        click: (e: Event) => openModal(e, modalId),
+        click: (e: Event) => openModal(e, this.props.modalId),
       },
     });
   }
@@ -26,7 +23,7 @@ class ModalOpenLink extends Block {
     /* html */
     return `
       <div class="js-modal-btn">
-        <span class="action-link">
+        <span class="action-link {{#if className}}${this.props.className}{{/if}}">
           {{linkTitle}}
         </span>
       </div>

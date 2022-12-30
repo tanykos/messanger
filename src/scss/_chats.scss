@@ -245,3 +245,7 @@
   font-style: italic;
   color: $gray;
 }
+
+.chat-actions {
+  @extend %flex-between;
+}

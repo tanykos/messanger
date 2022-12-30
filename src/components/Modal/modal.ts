@@ -1,15 +1,14 @@
-import ChatsController from '../../controllers/ChatsController';
 import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
 import { closeModal } from '../../utils/helpers';
 import { formDataImg } from '../../utils/uploadImg';
-import validateForm from '../../utils/validateForm';
 
 interface ModalProps {
   modalId: string;
   userId: number;
   modalData: Record<string, string>;
   formInputs: string;
+  onSubmit?: (e: Event) => void;
 }
 
 class Modal extends Block {
@@ -18,14 +17,15 @@ class Modal extends Block {
     userId,
     modalData,
     formInputs,
+    onSubmit,
   }: ModalProps) {
     super({
       modalId,
       userId,
       modalData,
       formInputs,
+      onSubmit,
       onSubmitImg: (e : Event) => this.onSubmitImg(e),
-      onAddChat: (e : Event) => this.onAddChat(e),
     });
   }
 
@@ -45,24 +45,6 @@ class Modal extends Block {
     }
   }
 
-  onAddChat(e: Event) {
-    e.stopPropagation();
-
-    const data = validateForm(e);
-    if (data) {
-      ChatsController.create(data.title)
-        .then(
-          () => {
-            closeModal(e, this.props.modalId);
-            const form = e.target as HTMLFormElement;
-            form.reset();
-          },
-          // eslint-disable-next-line no-console
-          (error) => { console.log(error); },
-        );
-    }
-  }
-
   render() {
     /* html */
     return `
@@ -76,8 +58,8 @@ class Modal extends Block {
 
         <div class="modal-body form-center">
           {{#if modalData.isTextInp}}
-            {{{Form onSubmit=onAddChat
-              formId="addChatForm"
+            {{{Form onSubmit=onSubmit
+              formId='${this.props.modalId}Form'
               formInputs=formInputs
               formData=modalData
               className="form-stretch"}}}
