@@ -1,0 +1,35 @@
+.upload-file-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.upload-file-input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  width: 0.4px;
+  height: 0.4px;
+}
+
+.upload-file-label {
+  text-align: center;
+  color: $primary;
+  width: 120px;
+  max-width: 120px;
+  cursor: pointer;
+  transition: 0.25s ease;
+
+  &:hover {
+    color: $primary-hover;
+    text-decoration: underline;
+  }
+}
+
+.file-name {
+  @extend %text-ellipsis;
+
+  text-align: center;
+  padding: 24px;
+  color: $gray;
+}

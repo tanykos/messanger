@@ -10,6 +10,12 @@ the base block,
 EventBus,
 custom fetch.
 
+YP Sprint 3:
+Implemented the following:
+Routing,
+HTTP API,
+WebSocket.
+
 To start a project run 'npm run start'
 
 UI design link: https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=1%3A515&t=Rv4jrJUI1tRNxhs8-0

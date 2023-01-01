@@ -8,10 +8,19 @@
   transition: all 0.3s ease;
   background-color: rgb(0 0 0 / 10%);
 
-  &:hover {
-    transform: scale(1.05);
-    background-color: rgb(0 0 0 / 60%);
-    cursor: pointer;
+  &.chat-avatar {
+    margin: 0;
+
+    .profile-pic {
+      &::after {
+        font-size: 20px;
+      }
+    }
+
+    .upload-button .inner-text {
+      font-size: 6px;
+      color: $text-dark;
+    }
   }
 
   .profile-pic {
@@ -21,6 +30,7 @@
     margin: -1px;
     height: 101%;
     width: 101%;
+    color: transparent;
 
     // fix end
 
@@ -37,8 +47,14 @@
     }
   }
 
-  &:hover .profile-pic {
-    opacity: 0.5;
+  &.avatar-hover:hover {
+    transform: scale(1.05);
+    background-color: rgb(0 0 0 / 60%);
+    cursor: pointer;
+
+    .profile-pic {
+      opacity: 0.5;
+    }
   }
 
   .upload-button {

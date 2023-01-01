@@ -1,0 +1,35 @@
+{
+  "uploadAvatar": 
+    {
+      "title": "Загрузите файл",
+      "buttonLabel": "Поменять",
+      "inputLabel": "Выбрать файл на компьютере",
+      "buttonHref": "./profile",
+      "isTextInp": false
+    },
+
+  "addChat": 
+    {
+      "title": "Введите название чата",
+      "buttonLabel": "Создать",
+      "isTextInp": true
+    },
+  "deleteChat": 
+    {
+      "title": "Введите id чата",
+      "buttonLabel": "Удалить",
+      "isTextInp": true
+    },
+  "addChatUser": 
+    {
+      "title": "Добавить пользователя",
+      "buttonLabel": "Добавить",
+      "isTextInp": true
+    },
+  "deleteChatUser": 
+    {
+      "title": "Удалить пользователя",
+      "buttonLabel": "Удалить",
+      "isTextInp": true
+    }
+}

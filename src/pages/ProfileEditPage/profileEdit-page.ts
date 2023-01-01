@@ -1,15 +1,28 @@
 import Block from '../../utils/Block';
 import profileData from '../../data/profileData.json';
+import modalData from '../../data/modalData.json';
 import validateForm from '../../utils/validateForm';
+import { withStore } from '../../utils/Store';
+import UserController from '../../controllers/UserController';
 
-class ProfileEditPage extends Block {
-  constructor() {
+class ProfileEditBase extends Block {
+  constructor(props: any) {
     super({
+      ...props,
       pageData: profileData['profile-edit'],
       inputsData: profileData['profile-edit-inputs'],
       actionsData: profileData['profile-edit-actions'],
-      onSubmit: (e : Event) => validateForm(e),
+      modalData: modalData.uploadAvatar,
+      onSubmit: (e : Event) => this.onSubmit(e),
     });
+  }
+
+  onSubmit(e : Event) {
+    const data = validateForm(e);
+    if (data) {
+      data.id = this.props.formData.id;
+      UserController.update(data);
+    }
   }
 
   render() {
@@ -17,16 +30,17 @@ class ProfileEditPage extends Block {
     return `
     <main class="layout-col-2">
       <div class="side-content">
-        <a href="./listChats-page" class="icon-link">
-          <i class="fa-solid fa-circle-arrow-left icon-primary"></i>
-        </a>
+      {{{Link iconClass="fa-solid fa-circle-arrow-left icon-primary" to='/settings' className="icon-link"}}}
       </div>
 
       <div class="main-content">
-        {{{ProfileContent pageData=pageData
+        {{{ProfileContent formData=formData
+          pageData=pageData
           inputsData=inputsData
           actionsData=actionsData
+          modalData=modalData
           formId="profileEditForm" 
+          isAvatarEdit=true
           onSubmit=onSubmit}}}
       </div>
     </main>
@@ -34,4 +48,5 @@ class ProfileEditPage extends Block {
   }
 }
 
+const ProfileEditPage = withStore((state) => ({ formData: { ...state.user } }))(ProfileEditBase);
 export default ProfileEditPage;

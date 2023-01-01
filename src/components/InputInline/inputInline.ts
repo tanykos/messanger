@@ -10,16 +10,18 @@ interface ProfileContentProps {
     'value': string
   };
   isEdit: boolean;
+  formData: Record<string, unknown>;
 }
 
 class InputInline extends Block {
-  constructor({ inputsData, isEdit }: ProfileContentProps) {
+  constructor({ formData, inputsData, isEdit }: ProfileContentProps) {
     super({
+      formData,
       inputsData,
       isEdit,
       events: {
-        focusin: (e : Event) => validateField(e.target as Element, inputsData.name),
-        focusout: (e : Event) => validateField(e.target as Element, inputsData.name),
+        focusin: (e : Event) => isEdit && validateField(e.target as Element),
+        focusout: (e : Event) => isEdit && validateField(e.target as Element),
       },
     });
   }
@@ -27,12 +29,15 @@ class InputInline extends Block {
   static componentName = 'InputInline';
 
   render() {
+    const inputName = this.props.inputsData.name;
+    const inputValue = this.props.formData[inputName] || '';
+
     /* html */
     return `
     <div class="input-inline">
       <label for="{{inputsData.name}}" class="label">{{inputsData.label}}</label>
       {{#if isEdit}}
-        <input value="{{inputsData.value}}"
+        <input value="${inputValue}"
           type="{{inputsData.type}}" 
           name="{{inputsData.name}}"
           required="{{inputsData.required}}"
@@ -40,7 +45,7 @@ class InputInline extends Block {
           placeholder="&nbsp;">
         <span id="{{inputsData.name}}" class="error" aria-live="polite">Неверное поле</span>
       {{else}}
-        <input value="{{inputsData.value}}"
+        <input value="${inputValue}"
           readonly
           type="{{inputsData.type}}" 
           name="{{inputsData.name}}"

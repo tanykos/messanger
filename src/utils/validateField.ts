@@ -1,14 +1,15 @@
-function validateField(target: Element, inputName: string) {
+function validateField(target: Element, targetName?: string): boolean {
   const input = target as HTMLFormElement;
+  const inputName = targetName || (target as HTMLFormElement).name;
   const spanError = document.getElementById(inputName);
 
   if (!spanError) {
-    return;
+    return true;
   }
 
-  if (input.nodeName === 'BUTTON') {
-    return;
-  }
+  // if (input.nodeName === 'BUTTON') {
+  //   return true;
+  // }
 
   let regexp: RegExp;
   switch (inputName) {
@@ -41,11 +42,17 @@ function validateField(target: Element, inputName: string) {
     input.classList.add('valid');
     input.classList.remove('invalid');
     spanError!.classList.remove('active');
-  } else {
-    input.classList.add('invalid');
-    input.classList.remove('valid');
-    spanError!.classList.add('active');
+    return true;
   }
+  input.classList.add('invalid');
+  input.classList.remove('valid');
+  spanError!.classList.add('active');
+  return false;
 }
 
 export default validateField;
+
+export const validateInput = (e : Event) => validateField(
+  e.target as HTMLInputElement,
+  (e.target as HTMLInputElement).name,
+);

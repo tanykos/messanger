@@ -56,5 +56,37 @@
       "type": "password",
       "required": true
     }
+  ],
+  "addChat": [
+    {
+      "name": "title",
+      "label": "Название чата",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "deleteChat": [
+    {
+      "name": "chatId",
+      "label": "Id чата",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "сhatUserAdd": [
+    {
+      "name": "users",
+      "label": "ID пользователя",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "сhatUserDelete": [
+    {
+      "name": "usersDelete",
+      "label": "ID пользователя",
+      "type": "text",
+      "required": true
+    }
   ]
 }

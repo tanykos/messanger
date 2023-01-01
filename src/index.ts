@@ -1,4 +1,3 @@
-import renderDOM from './utils/renderDOM';
 import LoginPage from './pages/Login';
 import RegistrationPage from './pages/RegistrationPage';
 import ListChatsPage from './pages/ListChatsPage';
@@ -16,13 +15,36 @@ import InputInline from './components/InputInline';
 import ErrorLayout from './components/ErrorLayout';
 import ChatSection from './components/ChatSection';
 import Popup from './components/Popup';
-import ChatDetails from './components/ChatDetails';
 import ChatMessage from './components/ChatMessage';
 import Form from './components/Form';
 import TextareaForm from './components/TextareaForm';
+import Link from './components/Link';
+import ButtonClose from './components/ButtonClose';
+import FormUpload from './components/FormUpload';
+import ChatsList from './components/ChatsList';
+import Messenger from './components/Messenger';
+import ModalOpenLink from './components/ModalOpenLink';
+import ModalChats from './components/ModalChats';
+import DropdownBtn from './components/DropdownBtn';
 import registerComponent from './utils/registerComponent';
 
-document.addEventListener('DOMContentLoaded', () => {
+import Router from './utils/Router';
+import AuthController from './controllers/AuthController';
+import './controllers/MessagesController';
+// import ChatsController from './controllers/ChatsController';
+
+enum Routes {
+  Index = '/',
+  Register = '/signup',
+  Settings = '/settings',
+  Profile = '/profile',
+  Password = '/password',
+  Chat = '/messenger',
+  Error404 = '/error404',
+  Error500 = '/error500',
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
   registerComponent(Button);
   registerComponent(InputForm);
   registerComponent(Avatar);
@@ -32,68 +54,50 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(ErrorLayout);
   registerComponent(ChatSection);
   registerComponent(Popup);
-  registerComponent(ChatDetails);
   registerComponent(ChatMessage);
   registerComponent(Form);
   registerComponent(TextareaForm);
+  registerComponent(Link);
+  registerComponent(ButtonClose);
+  registerComponent(FormUpload);
+  registerComponent(ChatsList);
+  registerComponent(ModalOpenLink);
+  registerComponent(ModalChats);
+  registerComponent(Messenger);
+  registerComponent(DropdownBtn);
 
-  const loginPage = new LoginPage();
-  const registrationPage = new RegistrationPage();
-  const listChatsPage = new ListChatsPage();
-  const profilePage = new ProfilePage();
-  const profileEditPage = new ProfileEditPage();
-  const profilePasswordPage = new ProfilePasswordPage();
-  const error404Page = new Error404Page();
-  const error500Page = new Error500Page();
+  Router
+    .use(Routes.Index, LoginPage)
+    .use(Routes.Register, RegistrationPage)
+    .use(Routes.Settings, ProfilePage)
+    .use(Routes.Profile, ProfileEditPage)
+    .use(Routes.Password, ProfilePasswordPage)
+    .use(Routes.Chat, ListChatsPage)
+    .use(Routes.Error404, Error404Page)
+    .use(Routes.Error500, Error500Page);
 
-  renderDOM('#app', loginPage);
+  let isProtectedRoute = true;
 
-  const path = document.location.pathname;
-
-  switch (path) {
-    case ('/pages/registration-page'):
-      renderDOM('#app', registrationPage);
+  // eslint-disable-next-line default-case
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Register:
+      isProtectedRoute = false;
       break;
-    case ('/pages/listChats-page'):
-      renderDOM('#app', listChatsPage);
-      break;
-    case ('/pages/profile-page'):
-      renderDOM('#app', profilePage);
-      break;
-    case ('/pages/profileEdit-page'):
-      renderDOM('#app', profileEditPage);
-      break;
-    case ('/pages/profilePassword-page'):
-      renderDOM('#app', profilePasswordPage);
-      break;
-    case ('/pages/error404-page'):
-      renderDOM('#app', error404Page);
-      break;
-    case ('/pages/error500-page'):
-      renderDOM('#app', error500Page);
-      break;
-    default:
-      renderDOM('#app', loginPage);
   }
 
-  // Modal
-  const modal = document.getElementById('modal');
-  const span: HTMLElement = document.getElementsByClassName('close')[0] as HTMLElement;
-  const modalShown: HTMLElement = document.querySelector('.modal-show') as HTMLElement;
+  try {
+    await AuthController.fetchUser();
+    Router.start();
 
-  if (modalShown) {
-    modalShown.addEventListener('click', () => {
-      modal!.style.display = 'block';
-    });
-    // Close the modal
-    span.onclick = () => {
-      modal!.style.display = 'none';
-    };
+    if (!isProtectedRoute) {
+      Router.go(Routes.Chat);
+    }
+  } catch (e) {
+    Router.start();
 
-    window.onclick = (event) => {
-      if (event.target === modal) {
-        modal!.style.display = 'none';
-      }
-    };
+    if (isProtectedRoute) {
+      Router.go(Routes.Index);
+    }
   }
 });

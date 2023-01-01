@@ -67,10 +67,26 @@
         background-color: $bg-hover;
         transition: all 0.3s;
       }
+
+      &.active-section {
+        background-color: $bg-active;
+      }
     }
 
     .chat-avatar {
       @include circle(47px, $bg-img);
+
+      position: relative;
+      overflow: hidden;
+
+      .profile-pic {
+        height: 47px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        color: transparent;
+      }
     }
 
     .chat-item {
@@ -98,6 +114,10 @@
         .chat-item-message,
         .chat-item-date {
           color: $gray;
+        }
+
+        .chat-item-message {
+          @extend %text-ellipsis;
         }
 
         .chat-counter {
@@ -152,6 +172,10 @@
     padding-bottom: 16px;
     border-top: 1px solid $border-gray;
     border-bottom: 1px solid $border-gray;
+
+    &.scroll-reverse {
+      flex-direction: column-reverse !important;
+    }
   }
 
   footer .row-items-3 {
@@ -179,7 +203,7 @@
 
   .message {
     width: fit-content;
-    min-width: 50px;
+    min-width: 100px;
     max-width: 60%;
     background-color: $bg-gray-2;
     border-radius: 5px;
@@ -197,9 +221,10 @@
     }
 
     .message-time {
-      text-align: end;
       font-size: 9px;
       color: $gray;
+      display: flex;
+      justify-content: space-between;
     }
   }
 }
@@ -223,4 +248,14 @@
   border-radius: 30px;
   outline: none;
   resize: none;
+}
+
+.info-text {
+  text-align: center;
+  font-style: italic;
+  color: $gray;
+}
+
+.chat-actions {
+  @extend %flex-between;
 }

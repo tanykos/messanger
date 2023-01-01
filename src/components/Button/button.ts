@@ -7,13 +7,10 @@ interface ButtonProps {
 }
 
 class Button extends Block {
-  constructor({ label, isIconBtn, onClick }: ButtonProps) {
+  constructor({ label, isIconBtn }: ButtonProps) {
     super({
       label,
       isIconBtn,
-      events: {
-        click: onClick,
-      },
     });
   }
 

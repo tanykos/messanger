@@ -9,7 +9,7 @@ interface ErrorLayoutProps {
   };
 }
 
-class ErrorLayout extends Block {
+class ErrorLayout extends Block<ErrorLayoutProps> {
   constructor({ pageData }: ErrorLayoutProps) {
     super({
       pageData,

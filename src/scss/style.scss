@@ -12,6 +12,7 @@
 @import "chats";
 @import "popup";
 @import "inputInvalid";
+@import "form-upload";
 
 // ====== general styles ======
 %sidebar {
@@ -44,21 +45,44 @@
   flex-direction: column;
 }
 
+%flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+%text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 h1 {
   font-size: 20px;
 }
 
-a {
+h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+a,
+.action-link {
   text-decoration: none;
   color: $primary;
 
   &:hover {
     filter: brightness(85%);
+    cursor: pointer;
   }
-}
 
-a.red {
-  color: $red;
+  &.red {
+    color: $red;
+  }
 }
 
 .text-gray {
@@ -67,11 +91,6 @@ a.red {
 
 .text-bold {
   font-weight: 600;
-}
-
-h4 {
-  font-size: 12px;
-  font-weight: 500;
 }
 
 .title-center {

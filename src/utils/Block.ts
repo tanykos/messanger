@@ -7,15 +7,17 @@ type BlockEvents<P = any> = {
   'flow:component-did-mount': [];
   'flow:component-did-update': [P, P];
   'flow:render': [];
+  'flow:component-will-unmount': [];
 };
 
 type Props<P extends Record<string, unknown> = any> = { events?: Record<string, () => void> } & P;
 
-abstract class Block<P extends Record<string, any> = any> {
+class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CWU: 'flow:component-will-unmount',
     FLOW_RENDER: 'flow:render',
   } as const;
 
@@ -40,7 +42,7 @@ abstract class Block<P extends Record<string, any> = any> {
    * @returns {void}
    */
 
-  protected constructor(propsAndChildren: any = {}) {
+  constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus<BlockEvents<Props<P>>>();
     const { props, children } = this.getPropsAndChildren(propsAndChildren);
 
@@ -64,6 +66,7 @@ abstract class Block<P extends Record<string, any> = any> {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -73,6 +76,15 @@ abstract class Block<P extends Record<string, any> = any> {
   }
 
   _componentDidMount() {
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        child.forEach((item) => {
+          item.dispatchComponentDidMount();
+        });
+      } else {
+        child.dispatchComponentDidMount();
+      }
+    });
     this.componentDidMount();
   }
 
@@ -80,8 +92,29 @@ abstract class Block<P extends Record<string, any> = any> {
 
   }
 
-  dispatchComponentDidMoun() {
+  dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+  }
+
+  _componentWillUnmount() {
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        child.forEach((item) => {
+          item.dispatchComponentWillUnmount();
+        });
+      } else {
+        child.dispatchComponentWillUnmount();
+      }
+    });
+    this.componentWillUnmount();
+  }
+
+  protected componentWillUnmount() {
+
+  }
+
+  dispatchComponentWillUnmount() {
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU);
   }
 
   _componentDidUpdate(oldProps: Props<P>, newProps: Props<P>) {
@@ -140,8 +173,8 @@ abstract class Block<P extends Record<string, any> = any> {
 
       set(target, prop, value) {
         const oldProps = { ...target };
-        let newTarget = target[prop as keyof Props<P>];
-        newTarget = value;
+        const newTarget = target;
+        newTarget[prop as keyof Props<P>] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, newTarget);
         return true;
       },
