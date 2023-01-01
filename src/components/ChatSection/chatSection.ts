@@ -26,11 +26,17 @@ class ChatSection extends Block {
   }
 
   render() {
+    const src = this.props.avatar ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}` : '//:0';
+
     /* html */
     return `
     <section class="chat-section">
       <a class="chat-link" id=${this.props.id}>
-        <span class="chat-avatar"></span>
+        <span class="chat-avatar">
+          {{#if avatar}}
+            <img class="profile-pic" src=${src} alt="Avatar"/>
+          {{/if}}
+        </span>
         <span class="chat-item">
           <div class="chat-item-row">
             <span class="chat-item-bold">{{title}}</span>

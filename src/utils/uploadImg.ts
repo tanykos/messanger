@@ -14,9 +14,10 @@ export function uploadImg(event: Event) {
   document.querySelector('.file-name')!.textContent = file.name;
 }
 
-export function formDataImg(event: Event) {
+export function formDataImg(event: Event, id: string) {
   event.preventDefault();
-  const inputFile = document.querySelector('.upload-file-input');
+
+  const inputFile = document.getElementById(id);
   const file = Object(inputFile)!.files[0];
   const formData = new FormData();
 

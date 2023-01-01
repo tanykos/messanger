@@ -50,6 +50,12 @@
   justify-content: space-between;
 }
 
+%text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 h1 {
   font-size: 20px;
 }

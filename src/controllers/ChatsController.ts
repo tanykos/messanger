@@ -34,6 +34,22 @@ class ChatsController {
     await this.fetchChats();
   }
 
+  async addAvatar(data: FormData) {
+    try {
+      const response = await this.api.addAvatar(data);
+
+      // await this.fetchChats();
+
+      return response;
+    } catch (e: any) {
+      store.set('chats.error', e);
+
+      // eslint-disable-next-line no-console
+      console.error(e);
+      throw (e);
+    }
+  }
+
   async delete(id: number) {
     await this.api.delete(id);
 

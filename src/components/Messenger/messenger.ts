@@ -3,6 +3,9 @@ import { ChatInfo, Message as MessageInfo } from '../../types/types';
 import modalData from '../../data/modalData.json';
 import fieldsData from '../../data/fieldsData.json';
 import { withStore } from '../../utils/Store';
+import { formDataImg } from '../../utils/uploadImg';
+import ChatsController from '../../controllers/ChatsController';
+import { closeModal } from '../../utils/helpers';
 
 interface MessengerProps {
   selectedChat: number | undefined;
@@ -17,16 +20,39 @@ class MessengerBase extends Block {
       ...props,
       modalDataAdd: modalData.addChatUser,
       modalDataDelete: modalData.deleteChatUser,
+      modalDataAvatar: modalData.uploadAvatar,
       formInputsAdd: fieldsData.сhatUserAdd,
       formInputsDelete: fieldsData.сhatUserDelete,
+      onSubmitAvatar: (e : Event) => this.onSubmitAvatar(e),
     });
   }
 
   static componentName = 'Messenger';
 
+  onSubmitAvatar(e : Event) {
+    e.stopPropagation();
+
+    // inputId = modalId + Form-input
+    const inputId = 'chatAvatarForm-input';
+    const data = formDataImg(e, inputId);
+
+    if (data) {
+      data.append('chatId', this.props.selectedChat);
+      ChatsController.addAvatar(data)
+        .then(
+          () => { closeModal(e, 'chatAvatar'); },
+          // eslint-disable-next-line no-console
+          (error) => { console.log(error); },
+        );
+    }
+  }
+
   render() {
     const { selectedChat } = this.props;
-    const activeChatTitle = selectedChat ? this.props.chats.find((x: any) => x.id === selectedChat).title : '';
+    const activeChat = selectedChat ? this.props.chats?.find((x: any) => x.id === selectedChat)
+      : undefined;
+    const activeChatTitle = activeChat?.title;
+    const avatarPath = activeChat?.avatar ? activeChat?.avatar : '';
 
     /* html */
     return `
@@ -37,7 +63,10 @@ class MessengerBase extends Block {
             <header>
               <div class="row-items-3">
                 <span class="item-1">
-                  <span class="chat-avatar"></span>
+                  {{{Avatar modalId="chatAvatar" className="chat-avatar" avatarPath="${avatarPath}"}}}        
+      
+                  {{{Modal modalId="chatAvatar" onSubmit=onSubmitAvatar modalData=modalDataAvatar chatId=${selectedChat}}}}
+                  
                 </span>
                 <span class="item-2 text-bold">${activeChatTitle}</span>
                 <span class="item-3 dropdown-wrap">

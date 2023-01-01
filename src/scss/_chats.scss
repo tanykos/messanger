@@ -75,6 +75,18 @@
 
     .chat-avatar {
       @include circle(47px, $bg-img);
+
+      position: relative;
+      overflow: hidden;
+
+      .profile-pic {
+        height: 47px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        color: transparent;
+      }
     }
 
     .chat-item {
@@ -105,9 +117,7 @@
         }
 
         .chat-item-message {
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
+          @extend %text-ellipsis;
         }
 
         .chat-counter {

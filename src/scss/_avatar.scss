@@ -8,6 +8,21 @@
   transition: all 0.3s ease;
   background-color: rgb(0 0 0 / 10%);
 
+  &.chat-avatar {
+    margin: 0;
+
+    .profile-pic {
+      &::after {
+        font-size: 20px;
+      }
+    }
+
+    .upload-button .inner-text {
+      font-size: 6px;
+      color: $text-dark;
+    }
+  }
+
   .profile-pic {
     transition: all 0.3s ease;
 

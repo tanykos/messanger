@@ -1,11 +1,9 @@
-import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
-import { closeModal } from '../../utils/helpers';
-import { formDataImg } from '../../utils/uploadImg';
 
 interface ModalProps {
   modalId: string;
   userId: number;
+  chatId?: number;
   modalData: Record<string, string>;
   formInputs: string;
   onSubmit?: (e: Event) => void;
@@ -15,6 +13,7 @@ class Modal extends Block {
   constructor({
     modalId,
     userId,
+    chatId,
     modalData,
     formInputs,
     onSubmit,
@@ -22,28 +21,14 @@ class Modal extends Block {
     super({
       modalId,
       userId,
+      chatId,
       modalData,
       formInputs,
       onSubmit,
-      onSubmitImg: (e : Event) => this.onSubmitImg(e),
     });
   }
 
   static componentName = 'Modal';
-
-  onSubmitImg(e : Event) {
-    e.stopPropagation();
-
-    const data = formDataImg(e);
-    if (data) {
-      UserController.updateAvatar(data)
-        .then(
-          () => { closeModal(e, this.props.modalId); },
-          // eslint-disable-next-line no-console
-          (error) => { console.log(error); },
-        );
-    }
-  }
 
   render() {
     /* html */
@@ -64,7 +49,7 @@ class Modal extends Block {
               formData=modalData
               className="form-stretch"}}}
           {{else}}
-            {{{FormUpload formData=modalData onSubmitImg=onSubmitImg}}}
+            {{{FormUpload formData=modalData onSubmitImg=onSubmit formId='${this.props.modalId}Form'}}}
           {{/if}}
         </div>
       </div>

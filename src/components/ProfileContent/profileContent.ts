@@ -1,4 +1,7 @@
+import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
+import { closeModal } from '../../utils/helpers';
+import { formDataImg } from '../../utils/uploadImg';
 
 interface ProfileContentProps {
   formData?: Record<string, unknown>;
@@ -23,6 +26,7 @@ class ProfileContent extends Block {
       modalData,
       formId,
       isAvatarEdit,
+      onSubmitImg: (e : Event) => this.onSubmitImg(e),
       events: {
         submit: onSubmit,
       },
@@ -30,6 +34,21 @@ class ProfileContent extends Block {
   }
 
   static componentName = 'ProfileContent';
+
+  onSubmitImg(e : Event) {
+    e.stopPropagation();
+    // inputId = modalId + Form-input
+    const inputId = 'profileAvatarForm-input';
+    const data = formDataImg(e, inputId);
+    if (data) {
+      UserController.updateAvatar(data)
+        .then(
+          () => { closeModal(e, 'profileAvatar'); },
+          // eslint-disable-next-line no-console
+          (error) => { console.log(error); },
+        );
+    }
+  }
 
   render() {
     const src = this.props.formData.avatar ? `https://ya-praktikum.tech/api/v2/resources/${this.props.formData.avatar}` : '//:0';
@@ -40,7 +59,7 @@ class ProfileContent extends Block {
       {{#if isAvatarEdit}}
         {{{Avatar modalId="profileAvatar" avatarPath=formData.avatar}}}        
       
-        {{{Modal modalId="profileAvatar" modalData=modalData userId=formData.id}}}
+        {{{Modal modalId="profileAvatar" onSubmit=onSubmitImg modalData=modalData userId=formData.id}}}
       {{else}}
         <div class="avatar-wrapper">
           <img class="profile-pic" src=${src} alt="Avatar"/>

@@ -27,6 +27,8 @@
 }
 
 .file-name {
+  @extend %text-ellipsis;
+
   text-align: center;
   padding: 24px;
   color: $gray;
