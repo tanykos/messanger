@@ -52,7 +52,7 @@ class ChatsController {
 
   async delete(id: number) {
     await this.api.delete(id);
-
+    store.set('selectedChat', undefined);
     this.fetchChats();
   }
 
