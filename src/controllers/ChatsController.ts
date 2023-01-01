@@ -38,7 +38,7 @@ class ChatsController {
     try {
       const response = await this.api.addAvatar(data);
 
-      // await this.fetchChats();
+      await this.fetchChats();
 
       return response;
     } catch (e: any) {
