@@ -4,7 +4,7 @@ import sinon from 'sinon';
 import Router from './Router';
 import Block from './Block';
 
-describe.only('Router', () => {
+describe('Router', () => {
   const originalForward = window.history.forward;
   const originalBack = window.history.back;
   let getContentFake: any;
