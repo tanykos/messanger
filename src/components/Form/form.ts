@@ -8,7 +8,7 @@ interface FormProps {
   onSubmit?: () => void;
 }
 
-class Form extends Block<FormProps> {
+class Form extends Block {
   constructor({
     formInputs, formData, formId, onSubmit, className,
   }: FormProps) {
