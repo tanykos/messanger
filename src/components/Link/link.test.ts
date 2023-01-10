@@ -37,11 +37,14 @@ describe('Link', () => {
   });
 
   it('should call AuthController.logout on link click', () => {
+    // arrange
     const link = new BaseLink({ logoutLink: true });
     const { element } = link;
 
+    // act
     element?.click();
 
+    // assert
     expect(logoutFake.callCount).to.eq(1);
   });
 });
