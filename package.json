@@ -19,6 +19,11 @@
     "url": "https://github.com/tanykos/yandex-praktikum/issues"
   },
   "homepage": "https://github.com/tanykos/yandex-praktikum#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all"
+    }
+  },
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
@@ -40,6 +45,7 @@
     "eslint-plugin-import": "^2.25.2",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.3",
     "jsdom": "21.0.0",
     "mini-css-extract-plugin": "2.7.2",
     "mocha": "10.2.0",
