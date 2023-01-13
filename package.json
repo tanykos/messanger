@@ -7,7 +7,8 @@
     "dev": "npm run build && webpack serve",
     "build": "webpack",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
-    "lint": "stylelint \"**/*.css\""
+    "lint": "stylelint \"**/*.css\"",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -19,11 +20,6 @@
     "url": "https://github.com/tanykos/yandex-praktikum/issues"
   },
   "homepage": "https://github.com/tanykos/yandex-praktikum#readme",
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm-run-all test lint:all"
-    }
-  },
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "~1.0.2",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
