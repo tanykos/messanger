@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 
 interface ErrorLayoutProps {
-  pageData: {
+  pageData?: {
     'numberError': string,
     'title': string,
     'linkTitle': string,
@@ -9,7 +9,7 @@ interface ErrorLayoutProps {
   };
 }
 
-class ErrorLayout extends Block<ErrorLayoutProps> {
+class ErrorLayout extends Block {
   constructor({ pageData }: ErrorLayoutProps) {
     super({
       pageData,

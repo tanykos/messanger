@@ -85,6 +85,11 @@ class Router {
     this._onRoute(window.location.pathname);
   }
 
+  public reset() {
+    this.routes = [];
+    this.currentRoute = null;
+  }
+
   private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
     if (!route) {

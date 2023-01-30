@@ -1,3 +1,4 @@
+import './scss/style.scss';
 import LoginPage from './pages/Login';
 import RegistrationPage from './pages/RegistrationPage';
 import ListChatsPage from './pages/ListChatsPage';
